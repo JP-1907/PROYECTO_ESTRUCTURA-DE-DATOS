@@ -38,6 +38,29 @@ public class Proteina {
         adyacentes.insertar(interaccion); // Agregamos la interacción a la lista interna de la proteína
         grado++; //aumenta grado de la proteina
     }
+    
+    /**
+     * Elimina la conexión que tenga como destino a la proteína indicada.
+     * Importante para mantener la integridad del grafo cuando se borra un nodo.
+     * @param vecina
+     */
+    public void eliminarVecino(Proteina vecina) {
+        Nodo actual = adyacentes.getInicio();
+        
+        while (actual != null) {
+            Interaccion i = (Interaccion) actual.getDato();
+            
+            if (i.getPB().equals(vecina)) {
+                // Usamos el método eliminar de tu clase Lista
+                // Pero ojo: necesitamos pasarle EL OBJETO EXACTO que está en el nodo
+                adyacentes.eliminar(i);
+                grado--; // Bajamos el grado porque perdió un amigo
+                return;  // Ya lo borramos, terminamos
+            }
+            
+            actual = actual.getNext();
+        }
+    }
 
     // --- Getters ---
     public String getID () {

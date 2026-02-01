@@ -68,6 +68,37 @@ public class GrafoBio {
         return true;
     }
     
+    /**
+     * Elimina una proteína del grafo y todas sus conexiones incidentes.
+     * Garantiza que no queden referencias "fantasmas" (Punteros a null).
+     * @param id El nombre de la proteína a borrar.
+     * @return true si se eliminó, false si no existía.
+     */
+    public boolean eliminarProteina(String id) {
+        Proteina pABorrar = buscarProteina(id);
+        
+        if (pABorrar == null) return false; // No existe
+
+        // Ir a cada vecino y decirles que me borren de su lista
+        Lista vecinos = pABorrar.getAdyacentes();
+        Nodo nodoVecino = vecinos.getInicio();
+        
+        while (nodoVecino != null) {
+            Interaccion i = (Interaccion) nodoVecino.getDato();
+            Proteina vecino = i.getPB();
+            
+            // El vecino borra la conexión hacia mí
+            vecino.eliminarVecino(pABorrar); 
+            
+            nodoVecino = nodoVecino.getNext();
+        }
+
+        // PASO 2: Finalmente, me borro a mí mismo de la lista maestra del grafo
+        listaProteinas.eliminar(pABorrar);
+        
+        return true;
+    }
+    
     public Lista Adyacentes(String idProteina) {
  
         Proteina p = buscarProteina(idProteina);
