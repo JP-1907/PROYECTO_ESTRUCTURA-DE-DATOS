@@ -7,31 +7,45 @@ package proyecto1;
 /**
  *
  * @author valen
+ * Clase Nodo genérico para una lista enlazada simple
+ * @param <T>
  */
-public class Nodo {
-    private Object dato;   // El contenido (Proteina, Interaccion, etc.)
-    private Nodo pNext;    // El puntero al siguiente nodo
 
-    // Constructor
-    public Nodo(Object dato) {
+public class Nodo <T> {
+    private T dato;   /**El contenido del nodo (Proteina, Interaccion, etc.)*/
+    private Nodo pNext;    /** El puntero al siguiente nodo*/
+
+/**Constructor del nodo. Crea un nodo con el dato indicado
+     * @param dato
+ */
+    public Nodo(T dato) {
         this.dato = dato;
         this.pNext = null;
     }
 
     // Getters y Setters
-    public Object getDato() {
+/**Obtiene el dato contenido en el nodo.
+     * @return el dato
+ */
+    public T getDato() {
         return dato;
     }
-
-    public Nodo getNext() {
+/**Obtiene el nodo siguiente en la lista.
+     * @return 
+ */
+    public Nodo<T> getNext() {
         return pNext;
     }
-
-    public void setNext(Nodo pNext) {
+/**Establece el nodo siguiente en la lista.
+     * @param pNext
+ */
+    public void setNext(Nodo<T> pNext) {
         this.pNext = pNext;
     }
-    
-    public void setDato(Object dato) {
+/**Modifica el valor del nodo con
+ * @param dato dado
+ */
+    public void setDato(T dato) {
         this.dato = dato;
 }
 }
