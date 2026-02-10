@@ -45,6 +45,10 @@ public class GrafoBio {
     /**
      * Crea una arista entre dos proteínas existentes.
      * Frafo no dirigido, se agrega en ambos sentidos.
+     * @param id1
+     * @param id2
+     * @param resistencia
+     * @return 
      */
     public boolean addInteraccion(String id1, String id2, double resistencia) {
         Proteina p1 = buscarProteina(id1);
@@ -105,6 +109,7 @@ public class GrafoBio {
     /**Obtiene la lista de adyacentes de una proteina buscando por su id, se usa gerAdyacentes 
      * clase proteina
      * @param idProteina
+     * @return 
      */
     public Lista adyacentes(String idProteina) {
         Proteina p = buscarProteina(idProteina);
@@ -150,5 +155,51 @@ public class GrafoBio {
             System.out.println(""); // Salto de línea
             aux = aux.getNext();
         }
+            
     }
+public Lista<Lista<Proteina>> detectarComplejosDFS() {
+    Lista<Lista<Proteina>> listaDeComplejos = new Lista<>();
+    Lista<Proteina> visitados = new Lista<>();
+
+    Nodo<Proteina> tempV = this.listaProteinas.getInicio();
+    while (tempV != null) {
+        Proteina p = tempV.getDato();
+        
+        if (!contieneProteina(visitados, p)) {
+            Lista<Proteina> nuevoComplejo = new Lista<>();
+            ejecutarDFSRecursivo(p, visitados, nuevoComplejo);
+            listaDeComplejos.insertar(nuevoComplejo);
+        }
+        tempV = tempV.getNext();
+    }
+    return listaDeComplejos;
+}
+
+private void ejecutarDFSRecursivo(Proteina actual, Lista<Proteina> visitados, Lista<Proteina> nuevoComplejo) {
+    visitados.insertar(actual);
+    nuevoComplejo.insertar(actual);
+
+    Nodo<Interaccion> nodoI = actual.getAdyacentes().getInicio();
+    while (nodoI != null) {
+        Proteina vecino = nodoI.getDato().getPB(); // getPB() es la proteína destino
+        if (!contieneProteina(visitados, vecino)) {
+            ejecutarDFSRecursivo(vecino, visitados, nuevoComplejo);
+        }
+        nodoI = nodoI.getNext();
+    }
+}
+private boolean contieneProteina(Lista<Proteina> lista, Proteina p) {
+    if (lista == null || lista.esVacia()) {
+        return false;
+    }
+    Nodo<Proteina> aux = lista.getInicio();
+    while (aux != null) {
+        // Comparamos los IDs para saber si es la misma proteína
+        if (aux.getDato().getID().equals(p.getID())) {
+            return true;
+        }
+        aux = aux.getNext();
+    }
+    return false;
+}
 }
