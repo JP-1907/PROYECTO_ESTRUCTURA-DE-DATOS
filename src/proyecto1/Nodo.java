@@ -13,7 +13,7 @@ package proyecto1;
 
 public class Nodo <T> {
     private T dato;   /**El contenido del nodo (Proteina, Interaccion, etc.)*/
-    private Nodo pNext;    /** El puntero al siguiente nodo*/
+    private Nodo<T> pNext;    /** El puntero al siguiente nodo*/
 
 /**Constructor del nodo. Crea un nodo con el dato indicado
      * @param dato

@@ -36,7 +36,7 @@ public class Proteina {
      * @param interaccion
      */
     public void addAdyacencia(Interaccion interaccion) {
-        adyacentes.insertar(interaccion); /**Agregamos la interacción a la lista interna de la proteína*/
+        adyacentes.insertarFinal(interaccion); /**Agregamos la interacción a la lista interna de la proteína*/
         grado++; /**Aumenta grado de la proteina*/
     }
     
@@ -87,7 +87,7 @@ public class Proteina {
      * Obtiene la lista de interacciones adyacentes a esta proteína.
      * @return lista de interacciones
      */
-    public Lista getAdyacentes() {
+    public Lista<Interaccion> getAdyacentes() {
         return adyacentes;
     }
     
@@ -120,6 +120,51 @@ public class Proteina {
     public int hashCode() {
         return id.hashCode();
     }
+    
+    private double dist;
+    private Proteina padre;
+    private boolean visitado;
+
+    /**
+    * Se utiliza antes de ejecutar el algoritmo para asegurar que todas las proteínas
+    * comiencen con una distancia infinita y estado no visitado, excepto el nodo origen,
+    * cuya distancia se inicializa en 0.
+    *
+    * Evita el uso de estructuras externas adicionales y permite
+    * acceder al estado del algoritmo en tiempo O(1) por proteína.
+    */
+    public void resetDijkstra(boolean esOrigen) {
+        dist = esOrigen ? 0.0 : Double.MAX_VALUE;
+        padre = null;
+        visitado = false;
+    }
+    //Getters y Setters
+    
+    /**
+     * Obtiene la distancia de la proteina.
+     * @return 
+     */
+    public double getDist() { 
+        return dist; 
+    }
+    public void setDist(double d) { 
+        dist = d; 
+    }
+
+    public Proteina getPadre() {
+        return padre; 
+    }
+    public void setPadre(Proteina p) {
+        padre = p; 
+    }
+
+    public boolean isVisitado() { 
+        return visitado; 
+    }
+    public void setVisitado(boolean v) { 
+        visitado = v; 
+    }
+
 }
 
 
