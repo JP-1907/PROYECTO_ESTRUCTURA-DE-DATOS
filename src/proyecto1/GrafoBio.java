@@ -38,7 +38,7 @@ public class GrafoBio {
             return false; /**Ya existe, evitamos duplicados (*/
         }
         Proteina nueva = new Proteina(id);
-        listaProteinas.insertar(nueva);
+        listaProteinas.insertarFinal(nueva);
         return true;
     }
 
@@ -48,9 +48,9 @@ public class GrafoBio {
      */
     public boolean addInteraccion(String id1, String id2, double resistencia) {
         Proteina p1 = buscarProteina(id1);
+        if (p1 == null) return false;
         Proteina p2 = buscarProteina(id2);
-
-        if (p1 == null || p2 == null) return false;
+        if (p2 == null) return false;
         if (id1.equals(id2)) return false;
         if (resistencia < 0) return false;
         if (p1.tieneVecino(p2))return false; /**Evitando dublicados*/
@@ -68,8 +68,10 @@ public class GrafoBio {
      */
     public boolean eliminarInteraccion(String id1, String id2) {
         Proteina p1 = buscarProteina(id1);
+        if (p1 == null) return false;
+
         Proteina p2 = buscarProteina(id2);
-        if (p1 == null || p2 == null) return false;
+        if (p2 == null) return false;
         if (!p1.tieneVecino(p2)) return false;
 
         /**Grafo no dirigido tambien se borra en ambos sentidos*/
@@ -94,7 +96,7 @@ public class GrafoBio {
         
         while (nodoVecino != null){ /**Recorriendo las interacciones*/
             Interaccion i = nodoVecino.getDato();
-            Proteina vecino = i.getPB();
+            Proteina vecino = i.getPA().equals(pAborrar) ? i.getPB() : i.getPA();
             vecino.eliminarVecino(pAborrar); /**Se pide al vecino que borre su conexion con la que se borra*/
             nodoVecino = nodoVecino.getNext();
         }
@@ -106,7 +108,7 @@ public class GrafoBio {
      * clase proteina
      * @param idProteina
      */
-    public Lista adyacentes(String idProteina) {
+    public Lista<Interaccion> adyacentes(String idProteina) {
         Proteina p = buscarProteina(idProteina);
         if (p != null) {  //si existe, se llama el metodo adyacentes de las proteinas
             return p.getAdyacentes(); 
@@ -114,10 +116,12 @@ public class GrafoBio {
     return null; 
     }
     
+
+    
     /**Obtiene lista maestra de las proteinas del grafo
      * @return lista de proteinas en el grafo 
      */
-    public Lista getListaProteinas() {
+    public Lista<Proteina> getListaProteinas() {
         return listaProteinas;
     }
     
