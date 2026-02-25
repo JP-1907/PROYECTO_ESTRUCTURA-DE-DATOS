@@ -534,14 +534,22 @@ public class Interfaz extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Aqui el usuario ingresa la Proteina A (origen) para crear una interaccion
+ * @param evt 
+ */
     private void PAModificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PAModificacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PAModificacionActionPerformed
-/**
- * 
+
+ /**
+ *Botón: "Detectar" (BFS).
+  
+     *Ejecuta BFS sobre el grafo para encontrar componentes conexos (complejos proteicos).
+     * Un “complejo” aquí significa: conjunto de proteínas que están conectadas entre sí por alguna ruta.
+     * Imprime cada complejo con: número de complejo, tamaño y lista de IDs.
  * @param evt 
- */
+ */   
     private void BFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BFSActionPerformed
         MostrarAnalisis.append("\n");
         MostrarAnalisis.append("Iniciando escaneo de complejos (BFS)...\n");
@@ -581,7 +589,16 @@ public class Interfaz extends javax.swing.JPanel {
         MostrarAnalisis.append("\n");
                 
     }//GEN-LAST:event_BFSActionPerformed
-
+ /**
+     * Botón: "Ver Red" (Visualizar).
+     *
+     *Crea un grafo visual usando GraphStream.
+     * Agrega nodos para cada proteína con su ID.
+     * 
+     *Agrega aristas evitando duplicados usando la regla
+     * Muestra la ventana con {@code graphVisual.display()}.
+     * 
+     */
     private void MostrarRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarRedActionPerformed
         System.setProperty("org.graphstream.ui", "swing");
         try{
@@ -619,7 +636,13 @@ public class Interfaz extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Error de visualización: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } 
     }//GEN-LAST:event_MostrarRedActionPerformed
-
+/**
+ * Boton Guardar. Abre un {@link JFileChooser} en modo guardar.
+     * Escribe el contenido del grafo actual a un archivo CSV.
+     *
+     * Guarda la red tal como está en memoria, incluyendo cambios hechos por botones.
+ * @param evt 
+ */
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         JFileChooser file = new JFileChooser();
         if (file.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
@@ -635,7 +658,13 @@ public class Interfaz extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Error al guardar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 }    }//GEN-LAST:event_GuardarActionPerformed
-
+/**
+     * Botón: "Agregar Interacción".
+     
+     * Lee 3 campos de texto: proteína origen, proteína destino y resistencia.
+     * Intenta crear la arista en el grafo con {@code miGrafo.addInteraccion(origen, destino, peso)}.Si se logra, limpia inputs y refresca ComboBox.</li>
+     * 
+     */
     private void AddInteraccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddInteraccionActionPerformed
 
         String origen = PAModificacion.getText().trim();
@@ -678,7 +707,15 @@ public class Interfaz extends javax.swing.JPanel {
                 "Dato Inválido", 
                 JOptionPane.ERROR_MESSAGE);
 }    }//GEN-LAST:event_AddInteraccionActionPerformed
-
+/** Botón: "Cargar Red".
+   * Abre un {@link JFileChooser} para que el usuario seleccione un archivo.
+     * Reinicia el grafo actual, {@link GestorArchivos#cargarRed(File, GrafoBio)} 
+     * para leer el archivo y poblar el grafo.
+     * Actualiza los ComboBox 
+     * Habilita los botones de análisis si ya hay proteínas.
+     * Muestra un mensaje de advertencia (si no guardaste antes, pierdes cambios).
+     * Actualiza el label {@code lblArchivo} con el nombre del archivo cargado.
+     */
     private void CargarRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarRedActionPerformed
         JFileChooser file = new JFileChooser();
         if (file.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
@@ -701,7 +738,14 @@ public class Interfaz extends javax.swing.JPanel {
             System.out.println("Carga de archivo cancelada.");
         }
     }//GEN-LAST:event_CargarRedActionPerformed
-
+/**
+     * Botón: "Aplicar fármaco" (Eliminar proteína).
+     *
+     * Obtiene el elemento seleccionado del ComboBox {@code EliminarModificacion}.
+     * Pide confirmación al usuario (YES/NO) porque esta operación es destructiva.</li>
+     * Llama a {@code miGrafo.eliminarProteina(diana)}.
+     *  
+     */
     private void EliminarProteinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarProteinaActionPerformed
 
         Object sel = EliminarModificacion.getSelectedItem();
@@ -745,7 +789,12 @@ public class Interfaz extends javax.swing.JPanel {
         actualizarEstadoBotones();
 
     }//GEN-LAST:event_EliminarProteinaActionPerformed
-
+/**    * Botón: "Calcular" (Dijkstra).
+     *  Lee proteína origen y destino desde ComboBox.
+     *   Ejecuta {@link AnalisisGrafo#rutaMasCorta(String, String)} usando Dijkstra.
+     *   Si hay ruta, imprime:La secuencia de proteínas: A -> ... -> B
+     *   La resistencia total acumulada (distancia) almacenada en el nodo final.
+     */
     private void CalcularDijkstraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularDijkstraActionPerformed
         if (PADijkstra.getSelectedItem() == null || PBDijkstra.getSelectedItem() == null) {
         JOptionPane.showMessageDialog(this, "Seleccione proteína de origen y destino.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -796,7 +845,12 @@ public class Interfaz extends javax.swing.JPanel {
         }
         MostrarAnalisis.append(" \n");
     }//GEN-LAST:event_CalcularDijkstraActionPerformed
-
+/**
+     * Botón: "Identificar Hubs".
+     * Ejecuta {@link AnalisisGrafo#encontrarHubsAutomatico()}.
+     *Ese método calcula un umbral dinámico basado en el promedio de grado del grafo.
+     * Lista las proteínas cuyo grado (cantidad de conexiones) supera el umbral.
+     */
     private void HubsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HubsActionPerformed
 
         MostrarAnalisis.append("Escaneando la red en busca de Hubs...\n");
@@ -820,14 +874,22 @@ public class Interfaz extends javax.swing.JPanel {
             }//GEN-LAST:event_HubsActionPerformed
 
     private void NuevaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaNombreActionPerformed
-        // TODO add your handling code here:
+         /**Pide ingresar el nombre de la nueva proteina*/  
     }//GEN-LAST:event_NuevaNombreActionPerformed
 
     private void NuevaConexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaConexActionPerformed
 
-        // TODO add your handling code here:
+        /**Pide ingresar los nombres de las proteinas conexas y el peso de sus aristas, 
+         * despues lo separa para crear bien las interacciones validando todo previamente*/ 
     }//GEN-LAST:event_NuevaConexActionPerformed
-
+/**
+     * Botón: "Aplicar fármaco" (Eliminar proteína).
+     *
+     *Obtiene el elemento seleccionado del ComboBox {@code EliminarModificacion}.
+     * Valida, Pide confirmación al usuario (YES/NO) porque esta operación es destructiva.Llama a {@code miGrafo.eliminarProteina(diana)}.</li>
+     * Si se eliminó, escribe en el panel de resultados y refresca ComboBox/botones.</li>
+     * 
+     */
     private void AddProteinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProteinaActionPerformed
         
         String nuevaProt = NuevaNombre.getText().trim().toUpperCase();
