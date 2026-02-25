@@ -169,16 +169,47 @@ public class AnalisisGrafo {
     }
 
     /**
-     * Metodo para identificar los Hubs.
-     * @param gradoMinimo
+     * Metodo que encuentra los hubs (llamando a encontrarHubs) calculando  el grado 
+     * dinámicamente usando promedio de conexiones del grafo.
+     * Considera como Hub a cualquier proteína que tenga el doble de conexiones \
+     * que el promedio.
      * @return 
      */
-    public Lista<Proteina> encontrarHubs(int gradoMinimo) {
+    public Lista<Proteina> encontrarHubsAutomatico() {
+        int totalProteinas = grafo.getListaProteinas().getSize();
+        if (totalProteinas == 0) return new Lista<>();
+        int sumaGrados = 0;
+        Nodo<Proteina> aux = grafo.getListaProteinas().getInicio();
+        
+        while(aux != null) {
+            sumaGrados += aux.getDato().getGrado();
+            aux = aux.getNext();
+        }
+        int promedio = sumaGrados / totalProteinas;
+        
+        int umbralDinamico = promedio * 2;
+        
+        if (umbralDinamico < 3) {
+            umbralDinamico = 3;
+        }
+        
+        // 4. Reutilizamos tu método original pasándole el número calculado
+        return encontrarHubs(umbralDinamico);
+    }
+
+    /**
+     * Metodo para que identifica los Hubs tomando como argumento un grado dado. 
+     * (para la funcionalidad se calcula con encontrarHubsAutomatico). 
+     * @param grado
+     * @return 
+     */
+    
+    public Lista<Proteina> encontrarHubs(int grado) {
         Lista<Proteina> hubs = new Lista();
         Nodo<Proteina> aux = grafo.getListaProteinas().getInicio();
         while(aux != null) {
-            Proteina p = (Proteina) aux.getDato();
-            if (p.getGrado() >= gradoMinimo) {
+            Proteina p = aux.getDato();
+            if (p.getGrado() >= grado) {
                 hubs.insertarFinal(p);
             }
             aux = aux.getNext();
