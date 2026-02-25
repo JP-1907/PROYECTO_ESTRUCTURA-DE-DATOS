@@ -32,12 +32,14 @@ public class Interfaz extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel20 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         GestionArchivos = new javax.swing.JPanel();
         CargarRed = new javax.swing.JButton();
         lblArchivo = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         ModificarRed = new javax.swing.JPanel();
         PAModificacion = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -78,6 +80,8 @@ public class Interfaz extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         Guardar = new javax.swing.JButton();
 
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1.png"))); // NOI18N
+
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(0, 0, 0));
         setToolTipText("");
@@ -105,6 +109,8 @@ public class Interfaz extends javax.swing.JPanel {
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1.png"))); // NOI18N
 
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1.png"))); // NOI18N
+
         javax.swing.GroupLayout GestionArchivosLayout = new javax.swing.GroupLayout(GestionArchivos);
         GestionArchivos.setLayout(GestionArchivosLayout);
         GestionArchivosLayout.setHorizontalGroup(
@@ -114,15 +120,21 @@ public class Interfaz extends javax.swing.JPanel {
                 .addGroup(GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(GestionArchivosLayout.createSequentialGroup()
                         .addComponent(jLabel12)
-                        .addGap(0, 36, Short.MAX_VALUE))
+                        .addGap(0, 41, Short.MAX_VALUE))
                     .addGroup(GestionArchivosLayout.createSequentialGroup()
                         .addGroup(GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CargarRed, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(GestionArchivosLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(lblArchivo)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(GestionArchivosLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(GestionArchivosLayout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addGap(0, 6, Short.MAX_VALUE))))))
         );
         GestionArchivosLayout.setVerticalGroup(
             GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,9 +146,12 @@ public class Interfaz extends javax.swing.JPanel {
                     .addGroup(GestionArchivosLayout.createSequentialGroup()
                         .addComponent(CargarRed)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblArchivo))
-                    .addComponent(jLabel18))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblArchivo)
+                        .addContainerGap())
+                    .addGroup(GestionArchivosLayout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel21))))
         );
 
         jTabbedPane1.addTab("Archivos", GestionArchivos);
@@ -193,7 +208,6 @@ public class Interfaz extends javax.swing.JPanel {
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Agrega una nueva proteína");
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Nombre de la Proteína");
 
@@ -203,7 +217,6 @@ public class Interfaz extends javax.swing.JPanel {
         NuevaNombre.setText("Ej. P54");
         NuevaNombre.addActionListener(this::NuevaNombreActionPerformed);
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Proteinas conexas y resistencias");
 
@@ -1060,6 +1073,8 @@ public class Interfaz extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
