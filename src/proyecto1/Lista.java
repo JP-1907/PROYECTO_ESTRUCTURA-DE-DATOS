@@ -141,6 +141,17 @@ public class Lista<T> {
     public int getSize() {
         return iN;
     }
+public void eliminarPrimero() {
+    if (!esVacia()) {
+        pFirst = pFirst.getNext();
+        iN--;
+    }
 }
+}
+
     
+
+
+    
+
 
