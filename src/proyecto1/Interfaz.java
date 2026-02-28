@@ -96,7 +96,7 @@ public class Interfaz extends javax.swing.JPanel {
 
         CargarRed.setBackground(new java.awt.Color(103, 200, 185));
         CargarRed.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        CargarRed.setForeground(new java.awt.Color(255, 255, 255));
+        CargarRed.setForeground(new java.awt.Color(0, 0, 0));
         CargarRed.setText("Cargar Red ");
         CargarRed.setToolTipText("Carga el archivo CVS o TXT de la red.");
         CargarRed.addActionListener(this::CargarRedActionPerformed);
