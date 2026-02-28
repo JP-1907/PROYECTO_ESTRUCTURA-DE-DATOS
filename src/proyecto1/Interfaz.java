@@ -576,7 +576,7 @@ public class Interfaz extends javax.swing.JPanel {
  * @param evt 
  */   
     private void BFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BFSActionPerformed
-        MostrarAnalisis.append("\n");
+        MostrarAnalisis.setText("");
         MostrarAnalisis.append("Iniciando escaneo de complejos (BFS)...\n");
 
         try {
@@ -649,7 +649,8 @@ public class Interfaz extends javax.swing.JPanel {
 
                     if (idA.compareTo(idB) < 0) {
                         String idArista = idA + "-" + idB; 
-                        graphVisual.addEdge(idArista, idA, idB);
+                        org.graphstream.graph.Edge aristaVisual = graphVisual.addEdge(idArista, idA, idB);
+                        aristaVisual.setAttribute("ui.label", inter.getResistencia());
                     }
                     auxInt = auxInt.getNext();
                     }
@@ -670,6 +671,8 @@ public class Interfaz extends javax.swing.JPanel {
  */
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         JFileChooser file = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto y CSV", "csv", "txt");
+        file.setFileFilter(filtro);
         if (file.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             File archivoDestino = file.getSelectedFile();
             try {
@@ -691,7 +694,7 @@ public class Interfaz extends javax.swing.JPanel {
      * 
      */
     private void AddInteraccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddInteraccionActionPerformed
-
+        VerModif.setText("");
         String origen = (String) PAModificacion.getSelectedItem();
         String destino = (String)PBModificacion.getSelectedItem();
         String pesoStr = PesoModificacion.getText().trim();
@@ -767,7 +770,7 @@ public class Interfaz extends javax.swing.JPanel {
      *  
      */
     private void EliminarProteinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarProteinaActionPerformed
-
+        VerModif.setText("");
         Object sel = EliminarModificacion.getSelectedItem();
         if (sel == null) {
             JOptionPane.showMessageDialog(this,
@@ -816,11 +819,11 @@ public class Interfaz extends javax.swing.JPanel {
      *   La resistencia total acumulada (distancia) almacenada en el nodo final.
      */
     private void CalcularDijkstraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularDijkstraActionPerformed
+        MostrarAnalisis.setText("");
         if (PADijkstra.getSelectedItem() == null || PBDijkstra.getSelectedItem() == null) {
         JOptionPane.showMessageDialog(this, "Seleccione proteína de origen y destino.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
         String origen = PADijkstra.getSelectedItem().toString();
         String destino = PBDijkstra.getSelectedItem().toString();
         if (origen.equals(destino)) {
@@ -872,7 +875,7 @@ public class Interfaz extends javax.swing.JPanel {
      * Lista las proteínas cuyo grado (cantidad de conexiones) supera el umbral.
      */
     private void HubsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HubsActionPerformed
-
+        MostrarAnalisis.setText("");
         MostrarAnalisis.append("Escaneando la red en busca de Hubs...\n");
 
         try {
@@ -913,6 +916,7 @@ public class Interfaz extends javax.swing.JPanel {
      * 
      */
     private void AddProteinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProteinaActionPerformed
+        VerModif.setText("");
         String nuevaProt = NuevaNombre.getText().trim().toUpperCase();
         String conexionesStr = NuevaConex.getText().trim().toUpperCase();
 
