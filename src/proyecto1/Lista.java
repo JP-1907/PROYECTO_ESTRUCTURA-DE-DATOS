@@ -11,6 +11,7 @@ package proyecto1;
  *Clase Lista generica para lista enlazada simple, estructura 
  * dinámica y escalable para almacenar datos.
  * @author valen
+ * @param <T>
  */
 public class Lista<T> {
     
@@ -27,6 +28,7 @@ public class Lista<T> {
     }
     
  /**Indica si la lista esta vacia
+     * @return 
  */
     public boolean esVacia() {
         return pFirst == null;
@@ -49,6 +51,7 @@ public class Lista<T> {
     /**
      * Inserta un nodo al principio de la lista.
      * Sirve para reconstruir el camino de Dijkstra en el orden correcto.
+     * @param dato
      */
     public void insertarInicio(T dato) {
         Nodo nuevo = new Nodo(dato);
@@ -132,11 +135,13 @@ public class Lista<T> {
     
 
  /**Obtiene el inicio de la lista, primer nodo
+     * @return 
  */
     public Nodo<T> getInicio() {
         return pFirst; 
     }
 /**Obtiene la cantidad de elementos en la lista.
+     * @return 
  */
     public int getSize() {
         return iN;
