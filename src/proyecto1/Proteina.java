@@ -132,6 +132,7 @@ public class Proteina {
     *
     * Evita el uso de estructuras externas adicionales y permite
     * acceder al estado del algoritmo en tiempo O(1) por proteína.
+     * @param esOrigen
     */
     public void resetDijkstra(boolean esOrigen) {
         dist = esOrigen ? 0.0 : Double.MAX_VALUE;
