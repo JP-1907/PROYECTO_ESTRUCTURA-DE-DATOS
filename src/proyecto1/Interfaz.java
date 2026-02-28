@@ -41,9 +41,7 @@ public class Interfaz extends javax.swing.JPanel {
         jLabel18 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         ModificarRed = new javax.swing.JPanel();
-        PAModificacion = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        PBModificacion = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         PesoModificacion = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -59,6 +57,8 @@ public class Interfaz extends javax.swing.JPanel {
         NuevaConex = new javax.swing.JTextField();
         AddProteina = new javax.swing.JToggleButton();
         EliminarModificacion = new javax.swing.JComboBox<>();
+        PAModificacion = new javax.swing.JComboBox<>();
+        PBModificacion = new javax.swing.JComboBox<>();
         AnalisisRed = new javax.swing.JPanel();
         BFS = new javax.swing.JButton();
         Hubs = new javax.swing.JButton();
@@ -160,15 +160,8 @@ public class Interfaz extends javax.swing.JPanel {
         ModificarRed.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificación de la Red", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI Emoji", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
         ModificarRed.setForeground(new java.awt.Color(0, 0, 0));
 
-        PAModificacion.setBackground(new java.awt.Color(170, 192, 189));
-        PAModificacion.setForeground(new java.awt.Color(0, 0, 0));
-        PAModificacion.addActionListener(this::PAModificacionActionPerformed);
-
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Proteina Origen");
-
-        PBModificacion.setBackground(new java.awt.Color(170, 192, 189));
-        PBModificacion.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Proteina Destino");
@@ -236,6 +229,14 @@ public class Interfaz extends javax.swing.JPanel {
         EliminarModificacion.setForeground(new java.awt.Color(0, 0, 0));
         EliminarModificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        PAModificacion.setBackground(new java.awt.Color(221, 253, 255));
+        PAModificacion.setForeground(new java.awt.Color(0, 0, 0));
+        PAModificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        PBModificacion.setBackground(new java.awt.Color(221, 253, 255));
+        PBModificacion.setForeground(new java.awt.Color(0, 0, 0));
+        PBModificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout ModificarRedLayout = new javax.swing.GroupLayout(ModificarRed);
         ModificarRed.setLayout(ModificarRedLayout);
         ModificarRedLayout.setHorizontalGroup(
@@ -246,72 +247,66 @@ public class Interfaz extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addGroup(ModificarRedLayout.createSequentialGroup()
                         .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(ModificarRedLayout.createSequentialGroup()
-                                    .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(ModificarRedLayout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addGap(36, 36, 36)
-                                            .addComponent(PesoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(ModificarRedLayout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(PBModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(ModificarRedLayout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(PAModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(36, 36, 36))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModificarRedLayout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(18, 18, 18)))
                             .addGroup(ModificarRedLayout.createSequentialGroup()
-                                .addComponent(AddInteraccion, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(49, 49, 49)))
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(PAModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ModificarRedLayout.createSequentialGroup()
+                                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(PesoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PBModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(AddInteraccion, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
                         .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddProteina)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel15)
-                            .addComponent(NuevaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NuevaConex, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14)))
+                            .addGroup(ModificarRedLayout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel13)
+                                    .addComponent(NuevaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel15)
+                                    .addComponent(NuevaConex, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModificarRedLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(AddProteina)
+                                .addGap(14, 14, 14))))
                     .addGroup(ModificarRedLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(EliminarModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(EliminarProteina, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         ModificarRedLayout.setVerticalGroup(
             ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ModificarRedLayout.createSequentialGroup()
-                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ModificarRedLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel13))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(PAModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))
-                        .addGap(18, 18, 18)
-                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(PBModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModificarRedLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(NuevaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel15)
-                        .addGap(4, 4, 4)))
+                .addGap(18, 18, 18)
                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel13))
+                .addGap(18, 18, 18)
+                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(PAModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(PBModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NuevaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
                     .addComponent(PesoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NuevaConex, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NuevaConex, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddInteraccion)
@@ -323,7 +318,7 @@ public class Interfaz extends javax.swing.JPanel {
                     .addComponent(jLabel7)
                     .addComponent(EliminarProteina)
                     .addComponent(EliminarModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Modificar Red", ModificarRed);
@@ -547,13 +542,6 @@ public class Interfaz extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-/**
- * Aqui el usuario ingresa la Proteina A (origen) para crear una interaccion
- * @param evt 
- */
-    private void PAModificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PAModificacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PAModificacionActionPerformed
 
  /**
  *Botón: "Detectar" (BFS).
@@ -680,11 +668,10 @@ public class Interfaz extends javax.swing.JPanel {
      */
     private void AddInteraccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddInteraccionActionPerformed
 
-        String origen = PAModificacion.getText().trim();
-        String destino = PBModificacion.getText().trim();
+        String origen = (String) PAModificacion.getSelectedItem();
+        String destino = (String)PBModificacion.getSelectedItem();
         String pesoStr = PesoModificacion.getText().trim();
 
-       
         if (origen.isEmpty() || destino.isEmpty() || pesoStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, 
                 "Error: Ningún campo puede estar vacío. Por favor, ingrese Origen, Destino y Resistencia.", 
@@ -709,8 +696,6 @@ public class Interfaz extends javax.swing.JPanel {
                 "Operación Exitosa", 
                 JOptionPane.INFORMATION_MESSAGE);
 
-            PAModificacion.setText("");
-            PBModificacion.setText("");
             PesoModificacion.setText("");
             actualizarComboBoxes();
 
@@ -731,6 +716,8 @@ public class Interfaz extends javax.swing.JPanel {
      */
     private void CargarRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarRedActionPerformed
         JFileChooser file = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto y CSV", "csv", "txt");
+        file.setFileFilter(filtro);
         if (file.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
             File archivoSeleccionado = file.getSelectedFile();
             try {
@@ -1056,9 +1043,9 @@ public class Interfaz extends javax.swing.JPanel {
     private javax.swing.JTextField NuevaConex;
     private javax.swing.JTextField NuevaNombre;
     private javax.swing.JComboBox<String> PADijkstra;
-    private javax.swing.JTextField PAModificacion;
+    private javax.swing.JComboBox<String> PAModificacion;
     private javax.swing.JComboBox<String> PBDijkstra;
-    private javax.swing.JTextField PBModificacion;
+    private javax.swing.JComboBox<String> PBModificacion;
     private javax.swing.JTextField PesoModificacion;
     private javax.swing.JScrollPane ScrollMostrarAnalisis;
     private javax.swing.JPanel Vizualizar;
