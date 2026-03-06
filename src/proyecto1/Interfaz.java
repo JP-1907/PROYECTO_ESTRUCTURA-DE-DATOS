@@ -123,7 +123,7 @@ public class Interfaz extends javax.swing.JPanel {
                 .addGroup(GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(GestionArchivosLayout.createSequentialGroup()
                         .addComponent(jLabel12)
-                        .addGap(0, 75, Short.MAX_VALUE))
+                        .addGap(0, 109, Short.MAX_VALUE))
                     .addGroup(GestionArchivosLayout.createSequentialGroup()
                         .addGroup(GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CargarRed, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,7 +137,7 @@ public class Interfaz extends javax.swing.JPanel {
                                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(GestionArchivosLayout.createSequentialGroup()
                                 .addComponent(jLabel21)
-                                .addGap(0, 40, Short.MAX_VALUE))))))
+                                .addGap(0, 74, Short.MAX_VALUE))))))
         );
         GestionArchivosLayout.setVerticalGroup(
             GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,12 +210,11 @@ public class Interfaz extends javax.swing.JPanel {
         NuevaNombre.setBackground(new java.awt.Color(201, 238, 233));
         NuevaNombre.setFont(new java.awt.Font("sansserif", 0, 10)); // NOI18N
         NuevaNombre.setForeground(new java.awt.Color(51, 51, 51));
-        NuevaNombre.setText("Ej. P54");
         NuevaNombre.addActionListener(this::NuevaNombreActionPerformed);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Proteinas conexas con resistencias");
-        jLabel15.setToolTipText("Escriba las conexiones que la nueva proteina tenga con las existentes en la red de la forma \"Proteina:Resistencia\"");
+        jLabel15.setText("Proteinas conexas y resistencias");
+        jLabel15.setToolTipText("Escriba las conexiones que la nueva proteina tenga con las existentes en la red de la forma \"Proteina:Resistencia\". Si no, puede conectar la proteina nueva luego con \"Agregar Interaccion\"");
 
         NuevaConex.setBackground(new java.awt.Color(201, 238, 233));
         NuevaConex.setFont(new java.awt.Font("sansserif", 0, 10)); // NOI18N
@@ -254,6 +253,17 @@ public class Interfaz extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ModificarRedLayout.createSequentialGroup()
+                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ModificarRedLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(EliminarModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(EliminarProteina, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(ModificarRedLayout.createSequentialGroup()
                         .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(ModificarRedLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -265,32 +275,24 @@ public class Interfaz extends javax.swing.JPanel {
                                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5))
-                                .addGap(29, 29, 29)
-                                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(PBModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(PesoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
-                        .addGap(37, 37, 37)
-                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(PBModificacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PesoModificacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModificarRedLayout.createSequentialGroup()
                                 .addComponent(jLabel14)
-                                .addComponent(jLabel13)
-                                .addComponent(NuevaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel15)
-                                .addComponent(NuevaConex, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(NuevaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                .addGap(55, 55, 55))
                             .addGroup(ModificarRedLayout.createSequentialGroup()
-                                .addComponent(AddProteina)
-                                .addGap(59, 59, 59))))
-                    .addGroup(ModificarRedLayout.createSequentialGroup()
-                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ModificarRedLayout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(EliminarModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(EliminarProteina, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addComponent(NuevaConex, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddProteina)
+                                    .addComponent(jLabel13))
+                                .addGap(56, 56, 56))))))
         );
         ModificarRedLayout.setVerticalGroup(
             ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,14 +304,6 @@ public class Interfaz extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ModificarRedLayout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NuevaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NuevaConex, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ModificarRedLayout.createSequentialGroup()
                         .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(PAModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -320,24 +314,32 @@ public class Interfaz extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(PesoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(PesoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(ModificarRedLayout.createSequentialGroup()
+                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(NuevaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(NuevaConex, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AddInteraccion)
                     .addComponent(AddProteina))
                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ModificarRedLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ModificarRedLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(29, 29, 29)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(EliminarModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EliminarProteina)))
+                        .addComponent(EliminarProteina))
+                    .addGroup(ModificarRedLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -448,43 +450,47 @@ public class Interfaz extends javax.swing.JPanel {
         AnalisisRed.setLayout(AnalisisRedLayout);
         AnalisisRedLayout.setHorizontalGroup(
             AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AnalisisRedLayout.createSequentialGroup()
-                .addGroup(AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AnalisisRedLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(AnalisisRedLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BFS, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Hubs, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(AnalisisRedLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ExportarAnalisis)
-                            .addComponent(ScrollMostrarAnalisis, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(60, Short.MAX_VALUE))
+                            .addComponent(ScrollMostrarAnalisis, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(75, 75, 75))
+                    .addGroup(AnalisisRedLayout.createSequentialGroup()
+                        .addGroup(AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BFS, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Hubs, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(38, Short.MAX_VALUE))))
         );
         AnalisisRedLayout.setVerticalGroup(
             AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AnalisisRedLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AnalisisRedLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BFS, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Hubs))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Hubs)
+                        .addGap(13, 13, 13))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AnalisisRedLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(ScrollMostrarAnalisis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ExportarAnalisis)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Analizar Red", AnalisisRed);
@@ -512,7 +518,7 @@ public class Interfaz extends javax.swing.JPanel {
                 .addGroup(VizualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(VizualizarLayout.createSequentialGroup()
                         .addComponent(jLabel16)
-                        .addGap(0, 109, Short.MAX_VALUE))
+                        .addGap(0, 143, Short.MAX_VALUE))
                     .addGroup(VizualizarLayout.createSequentialGroup()
                         .addComponent(MostrarRed)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -611,10 +617,12 @@ public class Interfaz extends javax.swing.JPanel {
     }//GEN-LAST:event_BFSActionPerformed
  /**
      * Botón: "Ver Red" (Visualizar).
-     *Crea un grafo visual usando GraphStream.
+     * Crea un grafo visual usando GraphStream.
      * Agrega nodos para cada proteína con su ID.
-     *Agrega aristas evitando duplicados usando la regla
+     * Agrega aristas evitando duplicados usando la regla
      * Muestra la ventana con {@code graphVisual.display()}.
+     * Se muestra la resistencia en las aristas
+     * Los complejos estan diferenciados por color
      * 
      */
     private void MostrarRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarRedActionPerformed
@@ -649,6 +657,35 @@ public class Interfaz extends javax.swing.JPanel {
                     }
                     auxProt = auxProt.getNext();
                 }
+            AnalisisGrafo analizador = new AnalisisGrafo(miGrafo);
+            Lista<Lista<Proteina>> complejos = analizador.encontrarConexas();
+
+            String[] colores = {
+                "#e74c3c","#3498db","#2ecc71",
+                "#f1c40f","#9b59b6","#1abc9c",
+                "#e67e22","#95a5a6"
+            };
+
+            int indiceColor = 0;
+            Nodo<Lista<Proteina>> nodoComplejo = complejos.getInicio();
+
+            while (nodoComplejo != null) {
+
+                String color = colores[indiceColor % colores.length];
+
+                Lista<Proteina> complejo = nodoComplejo.getDato();
+                Nodo<Proteina> aux = complejo.getInicio();
+
+                while (aux != null) {
+                    Proteina p = aux.getDato();
+                    org.graphstream.graph.Node n = graphVisual.getNode(p.getID());
+                    n.setAttribute("ui.style", "fill-color: " + color + ";");
+                    aux = aux.getNext();
+                }
+
+                nodoComplejo = nodoComplejo.getNext();
+                indiceColor++;
+            }
             graphVisual.display();
             
         } catch (Exception e) {
