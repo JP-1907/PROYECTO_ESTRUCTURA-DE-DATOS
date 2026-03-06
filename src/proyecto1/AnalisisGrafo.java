@@ -5,32 +5,40 @@
 package proyecto1;
 
 /**
- *En esta clase se implementan los algoritmos de busqueda BFS y Dijikstra
+ * Implementa los algoritmos de análisis sobre el grafo de interacción proteica.
+ * Incluye detección de componentes conexos mediante BFS, cálculo de rutas de
+ * menor resistencia mediante Dijkstra e identificación de proteínas hub.
  * @author valen
  */
 public class AnalisisGrafo {
     private GrafoBio grafo;
-
+    /**
+     * Crea un analizador asociado a un grafo biológico.
+     * @param grafo grafo de interacción sobre el cual se ejecutarán los algoritmos
+     */
     public AnalisisGrafo(GrafoBio grafo) {
         this.grafo = grafo;
     }
     /**
-     * Se eligio BFS sobre DFS para la busqueda de complejos proteicos,
-     * identificando componentes conexos
-     * @return 
+     * Identifica los componentes conexos del grafo utilizando el algoritmo BFS.
+     * Estos componentes se interpretan como = complejos proteicos.
+
+     * El algoritmo recorre todas las proteínas del grafo. Cuando encuentra una
+     * proteína que aún no ha sido visitada, ejecuta un BFS desde ella para
+     * descubrir todas las proteínas conectadas. Todas esas proteínas forman
+     * un mismo complejo.
+     * @return lista de complejos, donde cada complejo es una lista de proteínas conectadas
      */
     
     public Lista<Lista<Proteina>> encontrarConexas(){
-        Lista<Lista<Proteina>> islas = new Lista();
-        Lista<Proteina> visitados = new Lista();
+        Lista<Lista<Proteina>> islas = new Lista<>();
+        Lista<Proteina> visitados = new Lista<>();
         Nodo<Proteina> aux = grafo.getListaProteinas().getInicio();
         while(aux!=null){
             Proteina pinicial = aux.getDato();
             if(visitados.buscar(pinicial)==null){
-                Lista<Proteina> nuevaIsla = new Lista();
-                
+                Lista<Proteina> nuevaIsla = new Lista<>();
                 ejecutarBFS(pinicial, visitados, nuevaIsla);
-               
                 islas.insertarFinal(nuevaIsla);
             }
             aux = aux.getNext();
@@ -39,18 +47,26 @@ public class AnalisisGrafo {
     }
     
     /**
-     * Lógica interna del BFS usando la lista como cola.
+    * Ejecuta el recorrido BFS a partir de una proteína inicial para identificar
+    * todas las proteínas conectadas a ella.
+    *
+    * Utiliza una lista como cola (FIFO) para explorar la red nivel por nivel.
+    * Primero visita los vecinos directos del nodo inicial, luego los vecinos de 
+    * esos vecinos, y así sucesivamente.
+    * Cada proteína descubierta se marca como visitada para evitar recorrerla
+    * múltiples veces y se añade al componente actual ("isla").
+    * @param inicio proteína inicial del recorrido
+    * @param visitados lista de proteínas ya visitadas
+    * @param isla lista donde se almacenan las proteínas del componente actual
      */
     private void ejecutarBFS(Proteina inicio, Lista<Proteina> visitados, Lista<Proteina> isla) {
-        Lista<Proteina> cola = new Lista();
-        cola.insertarFinal(inicio);
+        Lista<Proteina> cola = new Lista<>();
+        cola.insertarFinal(inicio); //encolar
         visitados.insertarFinal(inicio);
         isla.insertarFinal(inicio);
 
         while (!cola.esVacia()) {
-           
             Proteina p = cola.eliminarInicio(); //desencolando
-
             Nodo<Interaccion> nodoVecino = p.getAdyacentes().getInicio();
             while (nodoVecino != null) {
                 Interaccion i = nodoVecino.getDato();
@@ -65,24 +81,24 @@ public class AnalisisGrafo {
             }
         }
     }
-
-
-    /**
-     * Encuentra el camino de menor resistencia entre dos proteínas.
-     * Se almacena el estado (distancia, padre y visitado) directamente en cada
-     * proteína para evitar búsquedas lineales repetidas en estructuras paralelas,
-     * mejorando la eficiencia.
-     * @param idA
-     * @param idB
-     * @return 
-     */
+   /**
+    * Calcula el camino de menor resistencia entre dos proteínas usando Dijkstra.
+    *
+    * El estado del algoritmo (distancia, padre y visitado) se almacena
+    * directamente en cada proteína para evitar estructuras auxiliares.
+    *
+    * @param idA identificador de la proteína origen
+    * @param idB identificador de la proteína destino
+    * @return lista de proteínas que representan la ruta más corta,
+    *         o null si no existe conexión entre ellas
+    */
     public Lista<Proteina> rutaMasCorta(String idA, String idB) {
 
         Proteina origen = grafo.buscarProteina(idA);
         Proteina destino = grafo.buscarProteina(idB);
         if (origen == null || destino == null) return null;
 
-        // Inicializar estado Dijkstra en todas las proteínas
+        /**Inicializar (reiniciar) estado Dijkstra en todas las proteínas*/
         Nodo<Proteina> aux = grafo.getListaProteinas().getInicio();
         while (aux != null) {
             Proteina p = aux.getDato();
@@ -91,13 +107,13 @@ public class AnalisisGrafo {
         }
 
         while (true) {
-        Proteina u = extraerMinimoNoVisitado(); // O(V)
+        Proteina u = extraerMinimoNoVisitado(); /**Se selecciona repetidamente la proteína no visitada con menor distancia acumulada*/
         if (u == null) break;
-        if (u.getDist() == Double.MAX_VALUE) break; // inalcanzables
+        if (u.getDist() == Double.MAX_VALUE) break; 
         if (u.equals(destino)) break;
 
         u.setVisitado(true);
-
+         /**Relajacion: Para cada vecino del nodo actual se evalúa si pasar por ese nodo produce un camino más corto.*/
         Nodo<Interaccion> vecinoNodo = u.getAdyacentes().getInicio();
         while (vecinoNodo != null) {
             Interaccion arista = vecinoNodo.getDato();
@@ -106,7 +122,7 @@ public class AnalisisGrafo {
                 double nuevaDist = u.getDist() + arista.getResistencia();
                 if (nuevaDist < v.getDist()) {
                     v.setDist(nuevaDist);
-                    v.setPadre(u); //Relajacion
+                    v.setPadre(u); 
                 }
             }
             vecinoNodo = vecinoNodo.getNext();
@@ -115,21 +131,25 @@ public class AnalisisGrafo {
 
     return reconstruirCamino(destino);
 }
-    // Métodos auxiliares Privados para Dijkstra
+    /**Métodos auxiliares Privados*/
+    
     /**
-    * Devuelve la proteína vecina de la actual en una interacción dada.
-    * Funciona independientemente del orden PA/PB.
+    * Obtiene la proteína vecina de una interacción dada respecto a una proteína dada.
+    * Permite obtener el vértice opuesto de la arista independientemente del orden PA/PB.
+    * Esto permite recorrer el grafo sin depender del orden en que las proteínas fueron 
+    * almacenadas en la arista, aunque no deberia de ser necesario si el grafo es 
+    * construido es consistentemente.
     */
     private Proteina vecinoDe(Proteina actual, Interaccion i) {
         if (i.getPA().equals(actual)) return i.getPB();
         if (i.getPB().equals(actual)) return i.getPA();
-        return null; // no debería ocurrir si el grafo es consistente
+        return null; 
     }
     /**
      * Selecciona la proteína no visitada con menor distancia acumulada.
-     *
      * Implementa la fase de extracción del mínimo del algoritmo de Dijkstra.
-     * @return 
+     * @return proteína con menor distancia entre las no visitadas,
+     * o null si no quedan nodos válidos
      */
     private Proteina extraerMinimoNoVisitado() {
         Proteina min = null;
@@ -149,16 +169,16 @@ public class AnalisisGrafo {
   
     /**
      * Reconstruye la ruta más corta desde el nodo destino hasta el origen,
-     * utilizando los punteros padre establecidos durante la relajación.
-     * El recorrido se realiza hacia atrás (destino a origen)y se inserta
+     * siguiendo los punteros padre establecidos durante la relajación de Dijkstra.
+     * El recorrido se realiza hacia atrás (destino a origen) y se inserta
      * cada proteína al inicio de la lista para devolver el camino en orden correcto
-     * @param destino
+     * @param destino lista con la ruta desde el origen hasta el destino
      * @return 
      */
     private Lista<Proteina> reconstruirCamino(Proteina destino) {
         if (destino.getDist() == Double.MAX_VALUE) return null;
 
-        Lista<Proteina> camino = new Lista();
+        Lista<Proteina> camino = new Lista<>();
         Proteina actual = destino;
 
         while (actual != null) {
@@ -169,11 +189,11 @@ public class AnalisisGrafo {
     }
 
     /**
-     * Metodo que encuentra los hubs (llamando a encontrarHubs) calculando  el grado 
-     * dinámicamente usando promedio de conexiones del grafo.
-     * Considera como Hub a cualquier proteína que tenga el doble de conexiones \
-     * que el promedio.
-     * @return 
+     * Metodo que encuentra los hubs (llamando a encontrarHubs) calculando un umbral 
+     * dinámico basado en el promedio de conexiones del grafo.
+     * Considera como Hub a cualquier proteína que tenga el doble de conexiones
+     * que el promedio de conexiones.
+     * @return lista de hubs
      */
     public Lista<Proteina> encontrarHubsAutomatico() {
         int totalProteinas = grafo.getListaProteinas().getSize();
@@ -193,19 +213,18 @@ public class AnalisisGrafo {
             umbralDinamico = 3;
         }
         
-        // 4. Reutilizamos tu método original pasándole el número calculado
         return encontrarHubs(umbralDinamico);
     }
 
     /**
      * Metodo para que identifica los Hubs tomando como argumento un grado dado. 
-     * (para la funcionalidad se calcula con encontrarHubsAutomatico). 
-     * @param grado
+     * (para la funcionalidad el gardo se calcula con encontrarHubsAutomatico). 
+     * @param grado 
      * @return 
      */
     
     public Lista<Proteina> encontrarHubs(int grado) {
-        Lista<Proteina> hubs = new Lista();
+        Lista<Proteina> hubs = new Lista<>();
         Nodo<Proteina> aux = grafo.getListaProteinas().getInicio();
         while(aux != null) {
             Proteina p = aux.getDato();
