@@ -64,7 +64,6 @@ public class Interfaz extends javax.swing.JPanel {
         PBModificacion = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         VerModif = new javax.swing.JTextArea();
-        jSeparator1 = new javax.swing.JSeparator();
         AnalisisRed = new javax.swing.JPanel();
         BFS = new javax.swing.JButton();
         Hubs = new javax.swing.JButton();
@@ -311,17 +310,11 @@ public class Interfaz extends javax.swing.JPanel {
                                     .addComponent(AddProteina)
                                     .addComponent(jLabel13))
                                 .addGap(56, 56, 56))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModificarRedLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(205, 205, 205))
         );
         ModificarRedLayout.setVerticalGroup(
             ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ModificarRedLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addGap(18, 18, 18)
                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel13))
@@ -1042,7 +1035,7 @@ public class Interfaz extends javax.swing.JPanel {
         
             actualizarComboBoxes();
             actualizarEstadoBotones();
-            NuevaNombre.setText("Ej. P54");
+            NuevaNombre.setText(" ");
             NuevaConex.setText("Ej. P51:5, M8:12, ...");
 
             JOptionPane.showMessageDialog(this,
@@ -1252,7 +1245,6 @@ public class Interfaz extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblArchivo;
     // End of variables declaration//GEN-END:variables
