@@ -103,15 +103,19 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="109" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="CargarRed" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                      <Component id="lblArchivo" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblArchivo" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel19" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
+                                  <Component id="CargarMaestro" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -121,7 +125,7 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="74" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -135,19 +139,20 @@
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="CargarRed" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lblArchivo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                              <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="CargarMaestro" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -207,6 +212,35 @@
                 </Property>
               </Properties>
             </Component>
+            <Component class="javax.swing.JButton" name="CargarMaestro">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="b9" green="c8" red="67" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cargar maestro"/>
+                <Property name="toolTipText" type="java.lang.String" value="Carga el archivo CVS o TXT de la red."/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CargarMaestroActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel19">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Emoji" size="12" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cargar el archivo maestro de prueba"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="ModificarRed">
@@ -250,7 +284,7 @@
                                   <Component id="EliminarProteina" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="32" max="32767" attributes="0"/>
+                              <EmptySpace pref="33" max="32767" attributes="0"/>
                               <Component id="jScrollPane1" min="-2" pref="288" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -677,7 +711,7 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="38" max="32767" attributes="0"/>
+                              <EmptySpace pref="39" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -972,7 +1006,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="143" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="144" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="MostrarRed" min="-2" max="-2" attributes="0"/>

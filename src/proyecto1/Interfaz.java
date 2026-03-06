@@ -41,6 +41,8 @@ public class Interfaz extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        CargarMaestro = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
         ModificarRed = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -62,6 +64,7 @@ public class Interfaz extends javax.swing.JPanel {
         PBModificacion = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         VerModif = new javax.swing.JTextArea();
+        jSeparator1 = new javax.swing.JSeparator();
         AnalisisRed = new javax.swing.JPanel();
         BFS = new javax.swing.JButton();
         Hubs = new javax.swing.JButton();
@@ -114,6 +117,17 @@ public class Interfaz extends javax.swing.JPanel {
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1.png"))); // NOI18N
 
+        CargarMaestro.setBackground(new java.awt.Color(103, 200, 185));
+        CargarMaestro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CargarMaestro.setForeground(new java.awt.Color(0, 0, 0));
+        CargarMaestro.setText("Cargar maestro");
+        CargarMaestro.setToolTipText("Carga el archivo CVS o TXT de la red.");
+        CargarMaestro.addActionListener(this::CargarMaestroActionPerformed);
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("Cargar el archivo maestro de prueba");
+
         javax.swing.GroupLayout GestionArchivosLayout = new javax.swing.GroupLayout(GestionArchivos);
         GestionArchivos.setLayout(GestionArchivosLayout);
         GestionArchivosLayout.setHorizontalGroup(
@@ -123,13 +137,16 @@ public class Interfaz extends javax.swing.JPanel {
                 .addGroup(GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(GestionArchivosLayout.createSequentialGroup()
                         .addComponent(jLabel12)
-                        .addGap(0, 109, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(GestionArchivosLayout.createSequentialGroup()
                         .addGroup(GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CargarRed, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(GestionArchivosLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(lblArchivo)))
+                                .addGroup(GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblArchivo)
+                                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(CargarMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(GestionArchivosLayout.createSequentialGroup()
@@ -137,7 +154,7 @@ public class Interfaz extends javax.swing.JPanel {
                                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(GestionArchivosLayout.createSequentialGroup()
                                 .addComponent(jLabel21)
-                                .addGap(0, 74, Short.MAX_VALUE))))))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         GestionArchivosLayout.setVerticalGroup(
             GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,16 +162,18 @@ public class Interfaz extends javax.swing.JPanel {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
-                .addGroup(GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(GestionArchivosLayout.createSequentialGroup()
                         .addComponent(CargarRed)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblArchivo)
-                        .addContainerGap())
-                    .addGroup(GestionArchivosLayout.createSequentialGroup()
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel21))))
+                        .addGap(148, 148, 148)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CargarMaestro))
+                    .addComponent(jLabel18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel21))
         );
 
         jTabbedPane1.addTab("Archivos", GestionArchivos);
@@ -260,9 +279,8 @@ public class Interfaz extends javax.swing.JPanel {
                                 .addComponent(EliminarModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(EliminarProteina, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(14, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ModificarRedLayout.createSequentialGroup()
                         .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(ModificarRedLayout.createSequentialGroup()
@@ -293,11 +311,17 @@ public class Interfaz extends javax.swing.JPanel {
                                     .addComponent(AddProteina)
                                     .addComponent(jLabel13))
                                 .addGap(56, 56, 56))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModificarRedLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(205, 205, 205))
         );
         ModificarRedLayout.setVerticalGroup(
             ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ModificarRedLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel13))
@@ -323,13 +347,13 @@ public class Interfaz extends javax.swing.JPanel {
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(NuevaConex, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AddInteraccion)
                     .addComponent(AddProteina))
-                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(26, 26, 26)
+                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(ModificarRedLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -337,9 +361,7 @@ public class Interfaz extends javax.swing.JPanel {
                             .addComponent(EliminarModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(EliminarProteina))
-                    .addGroup(ModificarRedLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -467,7 +489,7 @@ public class Interfaz extends javax.swing.JPanel {
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(38, Short.MAX_VALUE))))
+                        .addContainerGap(39, Short.MAX_VALUE))))
         );
         AnalisisRedLayout.setVerticalGroup(
             AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -518,7 +540,7 @@ public class Interfaz extends javax.swing.JPanel {
                 .addGroup(VizualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(VizualizarLayout.createSequentialGroup()
                         .addComponent(jLabel16)
-                        .addGap(0, 143, Short.MAX_VALUE))
+                        .addGap(0, 144, Short.MAX_VALUE))
                     .addGroup(VizualizarLayout.createSequentialGroup()
                         .addComponent(MostrarRed)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1079,6 +1101,44 @@ public class Interfaz extends javax.swing.JPanel {
               }
         }
     }//GEN-LAST:event_ExportarAnalisisActionPerformed
+/**
+ * Boton que permite cargar el archivo predeterminado de prueba sin necesidad de seleccionarlo.
+ * No se inicializa el programa de una vez con este cargado para poder apreciar detalles 
+ * como la inhabilitacion de los botones de modificar si no hay proteinas o red cargada.
+ * @param evt 
+ */
+    private void CargarMaestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarMaestroActionPerformed
+        try {
+        File archivoMaestro = new File("maestro.csv"); 
+
+        if (!archivoMaestro.exists()) {
+            JOptionPane.showMessageDialog(this,
+                "No se encontró el archivo maestro.\nRuta buscada:\n" + archivoMaestro.getAbsolutePath(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        GestorArchivos gestor = new GestorArchivos();
+        miGrafo = new GrafoBio();
+        gestor.cargarRed(archivoMaestro, miGrafo);
+
+        nombreArchivoActual = archivoMaestro.getName();
+        lblArchivo.setText("Archivo actual: " + nombreArchivoActual);
+
+        actualizarComboBoxes();
+        actualizarEstadoBotones();
+
+        JOptionPane.showMessageDialog(this,
+            "Archivo maestro cargado correctamente.");
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this,
+            "Error al cargar el archivo maestro:\n" + e.getMessage(),
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_CargarMaestroActionPerformed
 
     /**
      * Recorre el grafo actual y llena los menús desplegables de la interfaz
@@ -1149,6 +1209,7 @@ public class Interfaz extends javax.swing.JPanel {
     private javax.swing.JPanel AnalisisRed;
     private javax.swing.JButton BFS;
     private javax.swing.JButton CalcularDijkstra;
+    private javax.swing.JButton CargarMaestro;
     private javax.swing.JButton CargarRed;
     private javax.swing.JComboBox<String> EliminarModificacion;
     private javax.swing.JButton EliminarProteina;
@@ -1178,6 +1239,7 @@ public class Interfaz extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -1190,6 +1252,7 @@ public class Interfaz extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblArchivo;
     // End of variables declaration//GEN-END:variables
