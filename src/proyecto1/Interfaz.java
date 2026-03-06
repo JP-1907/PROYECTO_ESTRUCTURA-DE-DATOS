@@ -12,7 +12,8 @@ import java.io.File;
  * @author valen
  */
 public class Interfaz extends javax.swing.JPanel {
-    private GrafoBio miGrafo;   
+    private GrafoBio miGrafo;  
+    private String nombreArchivoActual = "Red creada";
 
     /**
      * Creates new form Interfaz
@@ -72,10 +73,9 @@ public class Interfaz extends javax.swing.JPanel {
         CalcularDijkstra = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
         ScrollMostrarAnalisis = new javax.swing.JScrollPane();
         MostrarAnalisis = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        ExportarAnalisis = new javax.swing.JButton();
         Vizualizar = new javax.swing.JPanel();
         MostrarRed = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
@@ -89,6 +89,7 @@ public class Interfaz extends javax.swing.JPanel {
         setToolTipText("");
 
         jTabbedPane1.setBackground(new java.awt.Color(0, 102, 102));
+        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
 
         GestionArchivos.setBackground(new java.awt.Color(255, 255, 255));
         GestionArchivos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestión de Archivos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Segoe UI Emoji", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -122,7 +123,7 @@ public class Interfaz extends javax.swing.JPanel {
                 .addGroup(GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(GestionArchivosLayout.createSequentialGroup()
                         .addComponent(jLabel12)
-                        .addGap(0, 58, Short.MAX_VALUE))
+                        .addGap(0, 75, Short.MAX_VALUE))
                     .addGroup(GestionArchivosLayout.createSequentialGroup()
                         .addGroup(GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CargarRed, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,7 +137,7 @@ public class Interfaz extends javax.swing.JPanel {
                                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(GestionArchivosLayout.createSequentialGroup()
                                 .addComponent(jLabel21)
-                                .addGap(0, 23, Short.MAX_VALUE))))))
+                                .addGap(0, 40, Short.MAX_VALUE))))))
         );
         GestionArchivosLayout.setVerticalGroup(
             GestionArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,16 +164,16 @@ public class Interfaz extends javax.swing.JPanel {
         ModificarRed.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Proteina Origen");
+        jLabel3.setText("Proteina Origen*");
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Proteina Destino");
+        jLabel4.setText("Proteina Destino*");
 
-        PesoModificacion.setBackground(new java.awt.Color(170, 192, 189));
+        PesoModificacion.setBackground(new java.awt.Color(201, 238, 233));
         PesoModificacion.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Resistencia");
+        jLabel5.setText("Resistencia*");
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Seleccionar ");
@@ -188,25 +189,25 @@ public class Interfaz extends javax.swing.JPanel {
         EliminarProteina.addActionListener(this::EliminarProteinaActionPerformed);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Elimina una proteína");
         jLabel2.setToolTipText("Simula el efecto de un fármaco apagando una proteína");
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Agrega una nueva interacción");
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Agrega una nueva proteína");
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("Nombre de la Proteína");
+        jLabel14.setText("Nombre de la Proteína *");
 
-        NuevaNombre.setBackground(new java.awt.Color(170, 192, 189));
+        NuevaNombre.setBackground(new java.awt.Color(201, 238, 233));
         NuevaNombre.setFont(new java.awt.Font("sansserif", 0, 10)); // NOI18N
         NuevaNombre.setForeground(new java.awt.Color(51, 51, 51));
         NuevaNombre.setText("Ej. P54");
@@ -214,13 +215,13 @@ public class Interfaz extends javax.swing.JPanel {
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Proteinas conexas con resistencias");
-        jLabel15.setToolTipText("Debe escribir las conexiones que la nueva proteina tenga con las existentes en la red de la forma \"Proteina:Resistencia\"");
+        jLabel15.setToolTipText("Escriba las conexiones que la nueva proteina tenga con las existentes en la red de la forma \"Proteina:Resistencia\"");
 
-        NuevaConex.setBackground(new java.awt.Color(170, 192, 189));
+        NuevaConex.setBackground(new java.awt.Color(201, 238, 233));
         NuevaConex.setFont(new java.awt.Font("sansserif", 0, 10)); // NOI18N
         NuevaConex.setForeground(new java.awt.Color(51, 51, 51));
         NuevaConex.setText("Ej. P51:5, M8:12, ...");
-        NuevaConex.setToolTipText("Debe escribir las conexiones que la nueva proteina tenga con las existentes en la red de la forma \"Proteina:Resistencia\"");
+        NuevaConex.setToolTipText("Escriba las conexiones que la nueva proteina tenga con las existentes en la red de la forma \"Proteina:Resistencia\"");
         NuevaConex.addActionListener(this::NuevaConexActionPerformed);
 
         AddProteina.setBackground(new java.awt.Color(103, 200, 185));
@@ -228,15 +229,15 @@ public class Interfaz extends javax.swing.JPanel {
         AddProteina.setText("Agregar Proteina");
         AddProteina.addActionListener(this::AddProteinaActionPerformed);
 
-        EliminarModificacion.setBackground(new java.awt.Color(221, 253, 255));
+        EliminarModificacion.setBackground(new java.awt.Color(201, 238, 233));
         EliminarModificacion.setForeground(new java.awt.Color(0, 0, 0));
         EliminarModificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        PAModificacion.setBackground(new java.awt.Color(221, 253, 255));
+        PAModificacion.setBackground(new java.awt.Color(201, 238, 233));
         PAModificacion.setForeground(new java.awt.Color(0, 0, 0));
         PAModificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        PBModificacion.setBackground(new java.awt.Color(221, 253, 255));
+        PBModificacion.setBackground(new java.awt.Color(201, 238, 233));
         PBModificacion.setForeground(new java.awt.Color(0, 0, 0));
         PBModificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -250,49 +251,45 @@ public class Interfaz extends javax.swing.JPanel {
         ModificarRedLayout.setHorizontalGroup(
             ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ModificarRedLayout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(ModificarRedLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ModificarRedLayout.createSequentialGroup()
-                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ModificarRedLayout.createSequentialGroup()
-                                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(ModificarRedLayout.createSequentialGroup()
-                                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(PBModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(ModificarRedLayout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(PesoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jLabel6)
-                                    .addComponent(AddInteraccion, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27)
-                                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(AddProteina)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel13)
-                                    .addComponent(NuevaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel15)
-                                    .addComponent(NuevaConex, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(ModificarRedLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(PAModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 31, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(PAModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6)
+                            .addComponent(AddInteraccion, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(ModificarRedLayout.createSequentialGroup()
+                                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(29, 29, 29)
+                                .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(PBModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PesoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
+                        .addGap(37, 37, 37)
+                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel14)
+                                .addComponent(jLabel13)
+                                .addComponent(NuevaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel15)
+                                .addComponent(NuevaConex, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ModificarRedLayout.createSequentialGroup()
+                                .addComponent(AddProteina)
+                                .addGap(59, 59, 59))))
                     .addGroup(ModificarRedLayout.createSequentialGroup()
                         .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ModificarRedLayout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
                                 .addComponent(EliminarModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(EliminarProteina, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(EliminarProteina, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         ModificarRedLayout.setVerticalGroup(
@@ -305,6 +302,14 @@ public class Interfaz extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ModificarRedLayout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NuevaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NuevaConex, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ModificarRedLayout.createSequentialGroup()
                         .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(PAModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -313,34 +318,27 @@ public class Interfaz extends javax.swing.JPanel {
                             .addComponent(jLabel4)
                             .addComponent(PBModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(PesoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(ModificarRedLayout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NuevaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NuevaConex, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                            .addComponent(PesoModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AddInteraccion)
                     .addComponent(AddProteina))
-                .addGap(18, 18, 18)
                 .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ModificarRedLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ModificarRedLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(ModificarRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(EliminarModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addComponent(EliminarProteina))
-                    .addGroup(ModificarRedLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EliminarProteina)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Modificar Red", ModificarRed);
@@ -424,12 +422,12 @@ public class Interfaz extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("<html>Detección de complejos<br>proteicos</html>");
+        jLabel10.setToolTipText("Ver los grupos de proteinas que trabajan juntas aisladas ");
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("<html>Búsqueda de proteínas<br>más escenciales</html>");
-
-        jProgressBar1.setToolTipText("Muestra el progreso de carga del archivo o del análisis de la red");
+        jLabel11.setToolTipText("Buscar las proteinas con mayor numero de conexiones en la red");
 
         MostrarAnalisis.setEditable(false);
         MostrarAnalisis.setBackground(new java.awt.Color(204, 204, 204));
@@ -440,8 +438,11 @@ public class Interfaz extends javax.swing.JPanel {
         MostrarAnalisis.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         ScrollMostrarAnalisis.setViewportView(MostrarAnalisis);
 
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("Progreso...");
+        ExportarAnalisis.setBackground(new java.awt.Color(103, 200, 185));
+        ExportarAnalisis.setForeground(new java.awt.Color(0, 0, 0));
+        ExportarAnalisis.setText("Exportar Analisis");
+        ExportarAnalisis.setToolTipText("Exporta el analisis actual a un archivo txt");
+        ExportarAnalisis.addActionListener(this::ExportarAnalisisActionPerformed);
 
         javax.swing.GroupLayout AnalisisRedLayout = new javax.swing.GroupLayout(AnalisisRed);
         AnalisisRed.setLayout(AnalisisRedLayout);
@@ -451,21 +452,19 @@ public class Interfaz extends javax.swing.JPanel {
                 .addGroup(AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AnalisisRedLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addGroup(AnalisisRedLayout.createSequentialGroup()
-                                .addGroup(AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BFS, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Hubs, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BFS, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Hubs, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(AnalisisRedLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(ScrollMostrarAnalisis, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addGroup(AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ExportarAnalisis)
+                            .addComponent(ScrollMostrarAnalisis, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         AnalisisRedLayout.setVerticalGroup(
             AnalisisRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -482,11 +481,9 @@ public class Interfaz extends javax.swing.JPanel {
                         .addComponent(Hubs))
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ScrollMostrarAnalisis, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(jLabel1)
+                .addComponent(ScrollMostrarAnalisis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ExportarAnalisis)
                 .addContainerGap())
         );
 
@@ -515,7 +512,7 @@ public class Interfaz extends javax.swing.JPanel {
                 .addGroup(VizualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(VizualizarLayout.createSequentialGroup()
                         .addComponent(jLabel16)
-                        .addGap(0, 92, Short.MAX_VALUE))
+                        .addGap(0, 109, Short.MAX_VALUE))
                     .addGroup(VizualizarLayout.createSequentialGroup()
                         .addComponent(MostrarRed)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -540,7 +537,7 @@ public class Interfaz extends javax.swing.JPanel {
 
         Guardar.setBackground(new java.awt.Color(103, 200, 185));
         Guardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Guardar.setForeground(new java.awt.Color(255, 255, 255));
+        Guardar.setForeground(new java.awt.Color(0, 0, 0));
         Guardar.setText("Guardar");
         Guardar.setToolTipText("Haz clic aquí para exportar los datos de la red actualizada a tu computadora.");
         Guardar.addActionListener(this::GuardarActionPerformed);
@@ -550,11 +547,11 @@ public class Interfaz extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(341, 341, 341)
-                .addComponent(Guardar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Guardar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -569,9 +566,7 @@ public class Interfaz extends javax.swing.JPanel {
 
  /**
  *Botón: "Detectar" (BFS).
-  
      *Ejecuta BFS sobre el grafo para encontrar componentes conexos (complejos proteicos).
-     * Un “complejo” aquí significa: conjunto de proteínas que están conectadas entre sí por alguna ruta.
      * Imprime cada complejo con: número de complejo, tamaño y lista de IDs.
  * @param evt 
  */   
@@ -616,10 +611,8 @@ public class Interfaz extends javax.swing.JPanel {
     }//GEN-LAST:event_BFSActionPerformed
  /**
      * Botón: "Ver Red" (Visualizar).
-     *
      *Crea un grafo visual usando GraphStream.
      * Agrega nodos para cada proteína con su ID.
-     * 
      *Agrega aristas evitando duplicados usando la regla
      * Muestra la ventana con {@code graphVisual.display()}.
      * 
@@ -665,7 +658,6 @@ public class Interfaz extends javax.swing.JPanel {
 /**
  * Boton Guardar. Abre un {@link JFileChooser} en modo guardar.
      * Escribe el contenido del grafo actual a un archivo CSV.
-     *
      * Guarda la red tal como está en memoria, incluyendo cambios hechos por botones.
  * @param evt 
  */
@@ -675,6 +667,7 @@ public class Interfaz extends javax.swing.JPanel {
         file.setFileFilter(filtro);
         if (file.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             File archivoDestino = file.getSelectedFile();
+            nombreArchivoActual = archivoDestino.getName();
             try {
                 GestorArchivos gestor = new GestorArchivos();
                 gestor.guardarRed(archivoDestino, miGrafo);
@@ -688,9 +681,8 @@ public class Interfaz extends javax.swing.JPanel {
 }    }//GEN-LAST:event_GuardarActionPerformed
 /**
      * Botón: "Agregar Interacción".
-     
-     * Lee 3 campos de texto: proteína origen, proteína destino y resistencia.
-     * Intenta crear la arista en el grafo con {@code miGrafo.addInteraccion(origen, destino, peso)}.Si se logra, limpia inputs y refresca ComboBox.</li>
+     * Toma proteína origen, proteína destino de las combobox y lee campo de texto de resistencia.
+     * Intenta crear la arista en el grafo con addInteraccion(origen, destino, peso)}.Si se logra, limpia inputs.
      * 
      */
     private void AddInteraccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddInteraccionActionPerformed
@@ -699,7 +691,7 @@ public class Interfaz extends javax.swing.JPanel {
         String destino = (String)PBModificacion.getSelectedItem();
         String pesoStr = PesoModificacion.getText().trim();
 
-        if (origen.isEmpty() || destino.isEmpty() || pesoStr.isEmpty()) {
+        if (origen==null || destino==null || pesoStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, 
                 "Error: Ningún campo puede estar vacío. Por favor, ingrese Origen, Destino y Resistencia.", 
                 "Campos Incompletos", 
@@ -720,7 +712,6 @@ public class Interfaz extends javax.swing.JPanel {
 
             VerModif.append( "Interacción entre " + origen + " y " + destino + " agregada con éxito.");
             PesoModificacion.setText("");
-            actualizarComboBoxes();
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, 
@@ -729,14 +720,13 @@ public class Interfaz extends javax.swing.JPanel {
                 JOptionPane.ERROR_MESSAGE);
 }    }//GEN-LAST:event_AddInteraccionActionPerformed
 /** Botón: "Cargar Red".
-   * Abre un {@link JFileChooser} para que el usuario seleccione un archivo.
-     * Reinicia el grafo actual, {@link GestorArchivos#cargarRed(File, GrafoBio)} 
-     * para leer el archivo y poblar el grafo.
-     * Actualiza los ComboBox 
-     * Habilita los botones de análisis si ya hay proteínas.
-     * Muestra un mensaje de advertencia (si no guardaste antes, pierdes cambios).
-     * Actualiza el label {@code lblArchivo} con el nombre del archivo cargado.
-     */
+ * Abre un {@link JFileChooser} para que el usuario seleccione un archivo.
+ * Reinicia el grafo actual, {@link GestorArchivos#cargarRed(File, GrafoBio)} 
+ * para leer el archivo y poblar el grafo.
+ * Actualiza los ComboBox, habilita los botones de análisis si ya hay proteínas.
+ * Muestra un mensaje de advertencia al principio (si no guardaste antes, pierdes cambios).
+ * Actualiza el label con el nombre del archivo cargado.
+ */
     private void CargarRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarRedActionPerformed
         JFileChooser file = new JFileChooser();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto y CSV", "csv", "txt");
@@ -747,6 +737,7 @@ public class Interfaz extends javax.swing.JPanel {
                 JOptionPane.WARNING_MESSAGE);
         if (file.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
             File archivoSeleccionado = file.getSelectedFile();
+            nombreArchivoActual = archivoSeleccionado.getName();
             try {
             GestorArchivos gestor = new GestorArchivos();
             miGrafo = new GrafoBio();
@@ -765,7 +756,7 @@ public class Interfaz extends javax.swing.JPanel {
      * Botón: "Aplicar fármaco" (Eliminar proteína).
      *
      * Obtiene el elemento seleccionado del ComboBox {@code EliminarModificacion}.
-     * Pide confirmación al usuario (YES/NO) porque esta operación es destructiva.</li>
+     * Pide confirmación al usuario (YES/NO) porque esta operación es destructiva.
      * Llama a {@code miGrafo.eliminarProteina(diana)}.
      *  
      */
@@ -813,7 +804,7 @@ public class Interfaz extends javax.swing.JPanel {
 
     }//GEN-LAST:event_EliminarProteinaActionPerformed
 /**    * Botón: "Calcular" (Dijkstra).
-     *  Lee proteína origen y destino desde ComboBox.
+     *   Lee proteína origen y destino desde ComboBox.
      *   Ejecuta {@link AnalisisGrafo#rutaMasCorta(String, String)} usando Dijkstra.
      *   Si hay ruta, imprime:La secuencia de proteínas: A -> ... -> B
      *   La resistencia total acumulada (distancia) almacenada en el nodo final.
@@ -871,8 +862,8 @@ public class Interfaz extends javax.swing.JPanel {
 /**
      * Botón: "Identificar Hubs".
      * Ejecuta {@link AnalisisGrafo#encontrarHubsAutomatico()}.
-     *Ese método calcula un umbral dinámico basado en el promedio de grado del grafo.
-     * Lista las proteínas cuyo grado (cantidad de conexiones) supera el umbral.
+     * Ese método calcula un umbral dinámico basado en el promedio de grado del grafo
+     * y devuelve lista las proteínas cuyo grado (cantidad de conexiones) supera el umbral.
      */
     private void HubsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HubsActionPerformed
         MostrarAnalisis.setText("");
@@ -906,12 +897,11 @@ public class Interfaz extends javax.swing.JPanel {
          * despues lo separa para crear bien las interacciones validando todo previamente*/ 
     }//GEN-LAST:event_NuevaConexActionPerformed
 /**
-     * Botón: "Agregar proteina" (Eliminar proteína).
-     *
+     * Botón: "Agregar proteina" 
      * Obtiene nombre de la nueva proteina en Txtfield, si se desea admite sus conexas 
      * en otro txtfield escribiendolos de la manera Proteina:resistencia
-     * Si la proteina no existe se agrega y si las conexas existen se agrega la interaccion,
-     * si no existen las conexas se agregan solas. Se podrian agregar interacciones a esta 
+     * Si la proteina no existe previamente, se agrega y si las conexas existen se agrega la interaccion,
+     * si no existen las conexas se agrega sola la proteina. Se podrian agregar interacciones a esta 
      * luego de ser agregada con el otro boton "agregar interaccion".
      * 
      */
@@ -1008,10 +998,55 @@ public class Interfaz extends javax.swing.JPanel {
                 JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_AddProteinaActionPerformed
+/** FUNCIONALIDAD EXTRA
+     * Exporta los resultados mostrados en el panel de análisis a un archivo de texto (.txt).
+     * Este método verifica primero que exista texto para exportar. Luego, despliega un 
+     * JFileChooser para que el usuario seleccione la ruta y el nombre del archivo. 
+     * Se asegura de que la extensión sea .txt 
+     * @param evt El evento de acción disparado al hacer clic en el botón Exportar.
+     */
+    private void ExportarAnalisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportarAnalisisActionPerformed
+        if (MostrarAnalisis.getText().trim().isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+            "El panel de análisis está vacío. Realice un análisis primero antes de exportar.", 
+            "Nada que exportar", 
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+            }  
+        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+        fileChooser.setDialogTitle("Exportar Reporte de Análisis Biológico");
+        fileChooser.setSelectedFile(new java.io.File("Reporte_Interactoma.txt"));
+        javax.swing.filechooser.FileNameExtensionFilter filtro = new javax.swing.filechooser.FileNameExtensionFilter("Archivos de Texto (*.txt)", "txt");
+        fileChooser.setFileFilter(filtro);
+        if (fileChooser.showSaveDialog(this) == javax.swing.JFileChooser.APPROVE_OPTION) {
+            java.io.File archivo = fileChooser.getSelectedFile();
+            if (!archivo.getName().toLowerCase().endsWith(".txt")) {
+                archivo = new java.io.File(archivo.getAbsolutePath() + ".txt");
+                }
+
+            try {
+                GestorArchivos gestor = new GestorArchivos(); 
+
+                String textoAnalisis = MostrarAnalisis.getText();
+                gestor.exportarReporte(archivo, textoAnalisis, nombreArchivoActual);
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                            "¡Reporte exportado correctamente como:\n" + archivo.getName() + "!", 
+                            "Exportación Exitosa", 
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                 "Ocurrió un error al intentar guardar el reporte:\n" + e.getMessage(), 
+                 "Error de Archivo", 
+                 javax.swing.JOptionPane.ERROR_MESSAGE);
+              }
+        }
+    }//GEN-LAST:event_ExportarAnalisisActionPerformed
 
     /**
      * Recorre el grafo actual y llena los menús desplegables de la interfaz
-     * con los nombres de las proteínas disponibles.
+     * con los nombres de las proteínas disponibles. Se llama cada vez que se modifica el grafo 
+     * agregando o eliminando proteinas
      */
     private void actualizarComboBoxes(){
         PADijkstra.removeAllItems();
@@ -1047,6 +1082,7 @@ public class Interfaz extends javax.swing.JPanel {
         Hubs.setEnabled(hayDatos);
         MostrarRed.setEnabled(hayDatos);
         Guardar.setEnabled(hayDatos);
+        ExportarAnalisis.setEnabled(hayDatos);
         if (!hayDatos) {
             MostrarAnalisis.setText("");
             MostrarAnalisis.append("La red está vacía.\n");
@@ -1057,6 +1093,7 @@ public class Interfaz extends javax.swing.JPanel {
             Hubs.setBackground(new java.awt.Color(215,179,179));
             MostrarRed.setBackground(new java.awt.Color(215,179,179));
             Guardar.setBackground(new java.awt.Color(215,179,179));
+            ExportarAnalisis.setBackground(new java.awt.Color(215,179,179));
         } else if (MostrarAnalisis.getText().contains("La red está vacía")) {
             
           MostrarAnalisis.setText("");
@@ -1065,6 +1102,7 @@ public class Interfaz extends javax.swing.JPanel {
           Hubs.setBackground(new java.awt.Color(103,200,185));
           MostrarRed.setBackground(new java.awt.Color(103,200,185));
           Guardar.setBackground(new java.awt.Color(103,200,185));
+          ExportarAnalisis.setBackground(new java.awt.Color(103,200,185));
         }   
     }
 
@@ -1077,6 +1115,7 @@ public class Interfaz extends javax.swing.JPanel {
     private javax.swing.JButton CargarRed;
     private javax.swing.JComboBox<String> EliminarModificacion;
     private javax.swing.JButton EliminarProteina;
+    private javax.swing.JButton ExportarAnalisis;
     private javax.swing.JPanel GestionArchivos;
     private javax.swing.JButton Guardar;
     private javax.swing.JButton Hubs;
@@ -1093,7 +1132,6 @@ public class Interfaz extends javax.swing.JPanel {
     private javax.swing.JScrollPane ScrollMostrarAnalisis;
     private javax.swing.JTextArea VerModif;
     private javax.swing.JPanel Vizualizar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1114,7 +1152,6 @@ public class Interfaz extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblArchivo;

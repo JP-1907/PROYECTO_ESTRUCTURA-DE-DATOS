@@ -5,37 +5,43 @@
 package proyecto1;
 
 /**
- * Clase GrafoBio (TDA Grafo)
+ * Clase GrafoBio
+ * Implementa el TDA Grafo para modelar la red de interacción proteína-proteína.
  * Gestiona la red completa usando Listas de Adyacencia.
+ * Mantiene la lista maestra de proteínas y permite agregar, eliminar,
+ * buscar y consultar conexiones dentro de la red.
  * @author valen
  */
 public class GrafoBio {
     private Lista<Proteina> listaProteinas; // La lista maestra de todos los vértices
-
+    
+    /**
+    * Construye un grafo biológico vacío.
+    */
     public GrafoBio() {
         this.listaProteinas = new Lista<>();
     }
-    /**Busca una proteína por su identificador.
+    /**Busca una proteína por su identificador en la lista del grafo.
      * @param id identificador único de la proteína
      * @return la proteína si existe, o null si no se encuentra
      */
     public Proteina buscarProteina(String id) {
          Nodo<Proteina> n = listaProteinas.getInicio();
-    while (n != null) {
-        Proteina p = n.getDato();
-        if (p.getID().equals(id)) return p;
-        n = n.getNext();
-        }
-    return null;
+        while (n != null) {
+            Proteina p = n.getDato();
+            if (p.getID().equals(id)) return p;
+            n = n.getNext();
+            }
+        return null;
     }
     /**
-     * Agrega un nuevo vértice al grafo verificando que no exista.
-     * @param id Nombre de la proteína.
+     * Agrega una nueva proteina  al grafo verificando que no exista previamente.
+     * @param id Nombre de la proteína 
      * @return true si se agregó, false si ya existía.
      */
     public boolean addProteina(String id) {
         if (buscarProteina(id) != null) {
-            return false; /**Ya existe, evitamos duplicados (*/
+            return false; 
         }
         Proteina nueva = new Proteina(id);
         listaProteinas.insertarFinal(nueva);
@@ -44,11 +50,14 @@ public class GrafoBio {
 
     /**
      * Crea una arista entre dos proteínas existentes.
-     * Frafo no dirigido, se agrega en ambos sentidos.
-     * @param id1
-     * @param id2
-     * @param resistencia
-     * @return 
+     * La red se modela como no dirigida, por lo que la conexión
+     * se registra en ambas listas de adyacencia.
+     * @param id1 primera proteina
+     * @param id2 segunda proteina
+     * @param resistencia o peso de la interaccion
+     * @return true si la interacción fue agregada; false si hubo error,
+     * si alguna proteína no existe, si la interacción ya existe
+     * o si los datos son inválidos
      */
     public boolean addInteraccion(String id1, String id2, double resistencia) {
         Proteina p1 = buscarProteina(id1);
@@ -57,18 +66,18 @@ public class GrafoBio {
         if (p2 == null) return false;
         if (id1.equals(id2)) return false;
         if (resistencia < 0) return false;
-        if (p1.tieneVecino(p2))return false; /**Evitando dublicados*/
+        if (p1.tieneVecino(p2))return false; /**Evitando duplicados*/
      
-        /** Creamos la interacción (arista) en ambas direcciones        
-        * y agregamos a las listas de adyacencia de cada proteína*/
+        /** Se crea la interacción (arista) en ambas direcciones y se agrega
+         * a las listas de adyacencia de cada proteína*/
         p1.addAdyacencia(new Interaccion(p1, p2, resistencia));
         p2.addAdyacencia(new Interaccion(p2, p1, resistencia));
         return true;
     }
-    /**Elimina interaccion (arista) entre dos proteinas
+    /**Elimina interaccion (arista) entre dos proteinas del grafo.
      * @param id1 de la primera proteina
      * @param id2 de la segunda 
-     * @return true si se elimino, false si no existía o proteínas no existen
+     * @return true si se elimino, false si no existía la interaccion o las proteínas.
      */
     public boolean eliminarInteraccion(String id1, String id2) {
         Proteina p1 = buscarProteina(id1);
@@ -86,73 +95,68 @@ public class GrafoBio {
     }
     /**
      * Elimina una proteína del grafo y todas sus conexiones incidentes.
+     * Primero elimina las referencias desde las proteínas vecinas y luego elimina
+     * la proteína de la lista maestra.
      * Garantiza que no queden referencias "fantasmas" (Punteros a null).
      * @param id El nombre de la proteína a borrar.
      * @return true si se eliminó, false si no existía.
      */
     
     public boolean eliminarProteina(String id){
-        
         Proteina pAborrar = buscarProteina(id);
         if (pAborrar == null) return false; 
         Lista<Interaccion> vecinos = pAborrar.getAdyacentes(); /**Busco los adyacentes de la que quiero borrar*/
         Nodo<Interaccion> nodoVecino = vecinos.getInicio();/**Obtengo el primero de lista de adyacentes*/
         
-        while (nodoVecino != null){ /**Recorriendo las interacciones*/
+        while (nodoVecino != null){
             Interaccion i = nodoVecino.getDato();
-            Proteina vecino = i.getPA().equals(pAborrar) ? i.getPB() : i.getPA();
-            vecino.eliminarVecino(pAborrar); /**Se pide al vecino que borre su conexion con la que se borra*/
+            Proteina vecino = i.getPB();
+            vecino.eliminarVecino(pAborrar); /**Se pide al vecino que borre su conexion con la proteina que se quiere borra*/
             nodoVecino = nodoVecino.getNext();
         }
-        listaProteinas.eliminar(pAborrar); /**De la lista del grafo*/
+        listaProteinas.eliminar(pAborrar); /**Se elima de la lista maestra del grafo*/
         return true;
     }
     
-    /**Obtiene la lista de adyacentes de una proteina buscando por su id, se usa gerAdyacentes 
+    /**Obtiene la lista de adyacentes de una proteina buscando por su id, se usa getAdyacentes 
      * clase proteina
-     * @param idProteina
-     * @return 
+     * @param idProteina 
+     * @return lista de interacciones adyacentes; null si la proteína no existe
      */
     public Lista<Interaccion> adyacentes(String idProteina) {
         Proteina p = buscarProteina(idProteina);
-        if (p != null) {  //si existe, se llama el metodo adyacentes de las proteinas
+        if (p != null) { 
             return p.getAdyacentes(); 
         }
     return null; 
     }
     
-
-    
-    /**Obtiene lista maestra de las proteinas del grafo
+    /**Obtiene lista maestra de las proteinas del grafo.
      * @return lista de proteinas en el grafo 
      */
     public Lista<Proteina> getListaProteinas() {
         return listaProteinas;
     }
-    
-    
-    /**Muestra el estado actual del grafo.
+     
+    /**Muestra el estado actual del grafo. Solo para depuracion interna.
      */
     public void mostrarGrafo() {
         if (listaProteinas.esVacia()) {
             System.out.println("El grafo está vacío.");
             return;
         }
-
-        Nodo aux = listaProteinas.getInicio();
+        Nodo<Proteina> aux = listaProteinas.getInicio();
         while (aux != null) {
-            Proteina p = (Proteina) aux.getDato();
+            Proteina p = aux.getDato();
             System.out.print("Proteína " + p.getID() + " conecta con: ");
             
-            // Recorremos sus adyacentes
-            Nodo auxVecino = p.getAdyacentes().getInicio();
+            Nodo<Interaccion> auxVecino = p.getAdyacentes().getInicio();
             if (auxVecino == null) {
                 System.out.print("Nadie.");
             }
             
             while (auxVecino != null) {
-                Interaccion i = (Interaccion) auxVecino.getDato();
-                // Mostramos Destino y Peso
+                Interaccion i = auxVecino.getDato();
                 System.out.print("[" + i.getPB().getID() + " | " + i.getResistencia() + "] -> ");
                 auxVecino = auxVecino.getNext();
             }
@@ -161,49 +165,6 @@ public class GrafoBio {
         }
             
     }
-public Lista<Lista<Proteina>> detectarComplejosDFS() {
-    Lista<Lista<Proteina>> listaDeComplejos = new Lista<>();
-    Lista<Proteina> visitados = new Lista<>();
 
-    Nodo<Proteina> tempV = this.listaProteinas.getInicio();
-    while (tempV != null) {
-        Proteina p = tempV.getDato();
-        
-        if (!contieneProteina(visitados, p)) {
-            Lista<Proteina> nuevoComplejo = new Lista<>();
-            ejecutarDFSRecursivo(p, visitados, nuevoComplejo);
-            listaDeComplejos.insertarFinal(nuevoComplejo);
-        }
-        tempV = tempV.getNext();
-    }
-    return listaDeComplejos;
 }
 
-private void ejecutarDFSRecursivo(Proteina actual, Lista<Proteina> visitados, Lista<Proteina> nuevoComplejo) {
-    visitados.insertarFinal(actual);
-    nuevoComplejo.insertarFinal(actual);
-
-    Nodo<Interaccion> nodoI = actual.getAdyacentes().getInicio();
-    while (nodoI != null) {
-        Proteina vecino = nodoI.getDato().getPB(); // getPB() es la proteína destino
-        if (!contieneProteina(visitados, vecino)) {
-            ejecutarDFSRecursivo(vecino, visitados, nuevoComplejo);
-        }
-        nodoI = nodoI.getNext();
-    }
-}
-private boolean contieneProteina(Lista<Proteina> lista, Proteina p) {
-    if (lista == null || lista.esVacia()) {
-        return false;
-    }
-    Nodo<Proteina> aux = lista.getInicio();
-    while (aux != null) {
-        // Comparamos los IDs para saber si es la misma proteína
-        if (aux.getDato().getID().equals(p.getID())) {
-            return true;
-        }
-        aux = aux.getNext();
-    }
-    return false;
-}
-}

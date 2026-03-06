@@ -10,18 +10,28 @@ package proyecto1;
  */
 /**
  * Clase Interaccion (Aristas del Grafo)
- * Representa la conexión entre dos proteínas y su resistencia (peso).
+ * Representa una arista del grafo de interacción proteica.
+ * Cada objeto Interaccion conecta dos proteínas y almacena
+ * la resistencia asociada a esa conexión.
+ *
+ * En el grafo no dirigido, cada conexión se representa internamente
+ * mediante dos objetos Interaccion: uno en la lista de adyacencia
+ * de cada proteína.
+ *
+ * PA representa la proteína desde cuya lista de adyacencia se accede
+ * a la interacción, mientras que PB representa la proteína vecina.
+ * 
  */
 
 public class Interaccion {
     private Proteina PA;
-    private Proteina PB;
+    private Proteina PB; 
     private double resistencia;
     
     /**
      * Constructor de una interaccion, recibe ambas proteinas a conectar
-     * @param PA conectar con
-     * @param PB
+     * @param PA origen (desde su lista se registra la interaccion)
+     * @param PB destino o vecina
      * @param resistencia peso de la interaccion
      */
     public Interaccion(Proteina PA, Proteina PB, double resistencia) {
@@ -35,7 +45,7 @@ public class Interaccion {
      */
     public Proteina getPA() { return PA; }
     
-    /**Obtiene la proteina B de la interaccion (el destino)
+    /**Obtiene la proteina B de la interaccion (el destino/ vecina)
      * @return 
     */
     public Proteina getPB() { return PB; }
