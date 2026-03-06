@@ -1,12 +1,10 @@
-\# Proyecto: BIOGRAPH
-
-
+Proyecto: BIOGRAPH
 
 Sistema para analizar redes de interacción proteica utilizando grafos.
 
 
 
-\## Integrantes
+Integrantes
 
 \- Valentina Cabrera
 
@@ -16,9 +14,7 @@ Sistema para analizar redes de interacción proteica utilizando grafos.
 
 
 
-
-
-\## Funcionalidades
+Funcionalidades
 
 \- Cargar redes desde archivos
 
@@ -28,7 +24,7 @@ Sistema para analizar redes de interacción proteica utilizando grafos.
 
 \- Identificar proteínas hub
 
-\- Modificar la red (eliminando y agregando proteinas, agregando interacciones)
+\- Modificar la red (eliminando y agregando proteínas, agregando interacciones)
 
 \- Visualizar la red con Graph Stream
 
@@ -36,7 +32,7 @@ Sistema para analizar redes de interacción proteica utilizando grafos.
 
 
 
-\## Repositorio
+Repositorio
 
 https://github.com/JP-1907/PROYECTO\_ESTRUCTURA-DE-DATOS/tree/master
 
