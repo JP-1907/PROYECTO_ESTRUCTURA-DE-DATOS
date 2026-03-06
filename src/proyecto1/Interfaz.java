@@ -1109,7 +1109,7 @@ public class Interfaz extends javax.swing.JPanel {
  */
     private void CargarMaestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarMaestroActionPerformed
         try {
-        File archivoMaestro = new File("maestro.csv"); 
+        File archivoMaestro = new File("maestro (1).csv"); 
 
         if (!archivoMaestro.exists()) {
             JOptionPane.showMessageDialog(this,
