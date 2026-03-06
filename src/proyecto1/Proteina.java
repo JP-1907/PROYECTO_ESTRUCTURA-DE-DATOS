@@ -11,7 +11,11 @@ package proyecto1;
 
 /**
  * Clase Proteina (Vértice del Grafo)
- * Contiene la información biológica y su propia lista de conexiones.
+ * Contiene la información biológica de la proteona  y su propia lista de adyacentes.
+ * Implementacion de Lista de Adyacencia -- la red es dispersa
+ * Nota: esta clase también almacena estado temporal para Dijkstra (distancia, padre, visitado),
+ * el cual debe reiniciarse con resetDijkstra antes de ejecutar el algoritmo.
+ * 
  */
 
 public class Proteina {
@@ -21,18 +25,18 @@ public class Proteina {
     private int grado; /**Aumenta con interacciones (adyacencias) que tenga 
                          *la proteina, ayuda a identidicar hubs*/
                         
-    /**Constructor de una proteina dado su
-     *@param id dado
+    /**Constructor de una proteina sin conexiones
+     *@param id unico dado 
     */
     public Proteina(String id) {
         this.id = id;
         this.grado = 0;     /**Nace sin adyacencias, grado 0*/
-        this.adyacentes = new Lista();     /**Nace con lista vacia */
+        this.adyacentes = new Lista<>();     /**Nace con lista vacia */
     }
 
     /**
-     * Agrega la conexión dada una interaccion y actualiza el grado.
-     * Se llama desde GrafoBio.
+     * Agrega la interaccion dada a la lista de adyacencia  y actualiza el grado.
+     * Se llama desde GrafoBio donde se verifica que no haya duplicados.
      * @param interaccion
      */
     public void addAdyacencia(Interaccion interaccion) {
@@ -40,38 +44,44 @@ public class Proteina {
         grado++; /**Aumenta grado de la proteina*/
     }
     
-    /** Verifica si esta proteína tiene una conexión con la proteína vecina indicada.
-    * @param vecina proteína a verificar
-    * @return true si existe una interacción entre ambas, false en caso contrario
-    */
+    /** 
+     * Verifica si esta proteína tiene una interaccion con la proteína (vecina) indicada.
+     * Recorre la lista de adyacencias de esta proteína y revisa si alguna interacción
+     * tiene como destino a la proteína vecina.
+     * @param vecina proteína con la que se desea comprobar la conexión
+     * @return true si existe una interacción entre ambas, false en caso contrario
+     */
     public boolean tieneVecino(Proteina vecina) {
         Nodo<Interaccion> actual = adyacentes.getInicio();
         while (actual != null) {
             Interaccion i = actual.getDato();
-            boolean tocaEsta = i.getPA().equals(this) || i.getPB().equals(this); //Ver si interacción toca a esta proteína (this puede estar en PA o PB)
-            boolean tocaVecina = i.getPA().equals(vecina) || i.getPB().equals(vecina);  // Y si toca a la vecina(vecina puede estar en PA o PB)
-            if (tocaEsta && tocaVecina) return true; //Existe la conexion si toca a ambas
+            if (i.getPB().equals(vecina)) {
+                return true;
+            }
             actual = actual.getNext();
         }
         return false;
     }
     
     /**
-     * Elimina la conexión de esta proteina a la proteína indicada.
-     * Importante para mantener la integridad del grafo cuando se borra un nodo.
-     * @param vecina
+     * Elimina la interaccion de esta proteina y la proteína indicada (vecina).
+     * Busca en la lista de adyacencias la interacción cuyo destino corresponde
+     * a la proteína vecina indicada y la elimina de la lista. También actualiza el grado
+     * de la proteína para reflejar la eliminación de la conexión.
+     * Se utiliza al eliminar nodos o interacciones del grafo para mantener
+     * consistencia en las listas de adyacencia.
+     * @param vecina proteína cuya conexión debe eliminarse
      */
     public void eliminarVecino(Proteina vecina) {
         Nodo<Interaccion> actual = adyacentes.getInicio();
         while (actual != null) {
             Interaccion i = actual.getDato();
-            boolean tocaEsta = i.getPA().equals(this)|| i.getPB().equals(this);  // Verificando si esta interacción conecta a this con vecina
-            boolean tocaVecina = i.getPA().equals(vecina)||i.getPB().equals(vecina);
-            if (tocaEsta && tocaVecina) { // Si las conecta hay que borrar
+            if (i.getPB().equals(vecina)) {
                 adyacentes.eliminar(i);
                 grado--;
                 return;
             }
+
             actual = actual.getNext();
         }
     }
@@ -120,48 +130,73 @@ public class Proteina {
     public int hashCode() {
         return id.hashCode();
     }
+     /* ------------------- Estado para Dijkstra ------------------- */
     
-    private double dist;
-    private Proteina padre;
-    private boolean visitado;
+    private double dist;   /** Distancia acumulada desde el origen*/
+    private Proteina padre; /** Padre en el camino más corto */
+    private boolean visitado; /**Marca de visitado  */
 
     /**
-    * Se utiliza antes de ejecutar el algoritmo para asegurar que todas las proteínas
-    * comiencen con una distancia infinita y estado no visitado, excepto el nodo origen,
-    * cuya distancia se inicializa en 0.
-    *
-    * Evita el uso de estructuras externas adicionales y permite
-    * acceder al estado del algoritmo en tiempo O(1) por proteína.
+     * reinicia el estado usado por Dijkstra en esta proteína.
+     * Se utiliza antes de ejecutar el algoritmo para asegurar que todas las proteínas
+     * comiencen con una distancia infinita y estado no visitado, excepto el nodo origen,
+     * cuya distancia se inicializa en 0. Se llama antes de ejecutar para evitar que queden
+     * valores residuales de ejecuciones previas.
+     * Evita el uso de estructuras externas adicionales y permite
+     * acceder al estado del algoritmo en tiempo O(1) por proteína.
      * @param esOrigen
-    */
+     */
     public void resetDijkstra(boolean esOrigen) {
         dist = esOrigen ? 0.0 : Double.MAX_VALUE;
         padre = null;
         visitado = false;
     }
-    //Getters y Setters
+    /**Getters y Setters*/
     
     /**
-     * Obtiene la distancia de la proteina.
+     * Obtiene la distancia de la proteina desde el origen (Dijkstra).
      * @return 
      */
     public double getDist() { 
         return dist; 
     }
+     /**
+     * Actualiza la distancia acumulada (Dijkstra).
+     * @param d nueva distancia
+     */
     public void setDist(double d) { 
         dist = d; 
     }
-
+    
+    /**
+     * Obtiene el padre en el camino más corto (Dijkstra).
+     * Durante la ejecución del algoritmo, cada proteína guarda una referencia a su
+     * proteína "padre", el nodo desde el cual se alcanzó con menor distancia.
+     * @return proteína padre o null si no tiene
+     */
     public Proteina getPadre() {
         return padre; 
     }
+    
+    /**
+     * Define el padre en el camino más corto (Dijkstra).
+     * @param p nueva proteína padre
+     */
     public void setPadre(Proteina p) {
         padre = p; 
     }
-
+    
+    /**
+     * Indica si la proteína ya fue visitada por Dijkstra.
+     * @return true si está marcada como visitada; false si no
+     */
     public boolean isVisitado() { 
         return visitado; 
     }
+      /**
+     * Marca o desmarca la proteína como visitada (Dijkstra).
+     * @param v nuevo valor de visitado
+     */
     public void setVisitado(boolean v) { 
         visitado = v; 
     }
