@@ -21,7 +21,7 @@ public class AnalisisGrafo {
     }
     /**
      * Identifica los componentes conexos del grafo utilizando el algoritmo BFS.
-     * Estos componentes se interpretan como = complejos proteicos.
+     * Estos componentes se interpretan como complejos proteicos.
 
      * El algoritmo recorre todas las proteínas del grafo. Cuando encuentra una
      * proteína que aún no ha sido visitada, ejecuta un BFS desde ella para
