@@ -2,8 +2,6 @@ Proyecto: BIOGRAPH
 
 Sistema para analizar redes de interacción proteica utilizando grafos.
 
-
-
 Integrantes
 
 \- Valentina Cabrera
@@ -11,8 +9,6 @@ Integrantes
 \- Juan Pablo Rojas
 
 \- Daniel Angulo
-
-
 
 Funcionalidades
 
@@ -31,8 +27,7 @@ Funcionalidades
 \- Exportar resultados
 
 
-
 Repositorio
 
-https://github.com/JP-1907/PROYECTO\_ESTRUCTURA-DE-DATOS/tree/master
+https://github.com/JP-1907/PROYECTO_ESTRUCTURA-DE-DATOS/tree/master
 
